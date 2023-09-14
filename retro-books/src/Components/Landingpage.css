@@ -170,3 +170,41 @@
   background: #F6F9FE;
   color: #44207a;
 }
+
+.buy-books-section{
+  background-color: #bfafef;
+  /* background-color: #fff; */
+  height: 100%;
+  width: 100%;
+  /* padding-bottom: 4%; */
+}
+
+.buy-books-section-photo{
+  height: 100%;
+  width: 80%;
+}
+
+.buy-books-section .part-1 {
+  padding: 8%;
+  padding-bottom: 4%;
+  font-size: 500%;
+  color: #44207a;
+  font-family: cursive;
+}
+
+.buy-books-section .tagline {
+  font-size: 40%;
+  color: #44207a;
+  font-family: "dancing script", cursive;
+}
+
+@media screen and (max-width: 600px) {
+  .buy-books-section .part-1 {
+    margin-top: 1%;
+    height: 100%;
+    width: 100%;
+  }
+  .buy-books-section {
+    padding-bottom: 20%;
+  }
+}
