@@ -51,15 +51,16 @@
 }
 
 .title-cover-photo {
-  height: 40rem;
+  height: 100%;
   width: 100%;
   background-color: #44207a;
+  padding-bottom: 2%;
 }
 
 .cover-photo {
-  margin-top: 15%;
-  height: 80%;
-  width: 80%;
+  margin-top: 6%;
+  height: 100%;
+  width: 100%;
 }
 
 .title-cover-photo .part-1 {
@@ -69,8 +70,19 @@
   font-family: cursive;
 }
 
-.tagline{
+.tagline {
   font-size: 40%;
   color: #bfafef;
-  font-family: 'dancing script',  cursive;
+  font-family: "dancing script", cursive;
+}
+
+@media screen and (max-width: 600px) {
+  .title-cover-photo .part-1 {
+    margin-top: 1%;
+    height: 100%;
+    width: 100%;
+  }
+  .title-cover-photo {
+    padding-bottom: 20%;
+  }
 }
