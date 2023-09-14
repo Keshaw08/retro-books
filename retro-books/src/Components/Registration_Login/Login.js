@@ -18,7 +18,7 @@ export default function Login() {
     // set configurations
     const configuration = {
       method: "post",
-      url: "http://localhost:3000/login",
+      url: "http://localhost:5000/login",
       data: {
         email,
         password,
@@ -32,7 +32,8 @@ export default function Login() {
           path: "/",
         });
         // redirect user to the auth page
-        window.location.href = "/auth";
+        window.location.href = "/home";
+        // localStorage.setItem('user',JSON.stringify({...result.user,email}))
       })
       .catch((error) => {
         error = new Error();

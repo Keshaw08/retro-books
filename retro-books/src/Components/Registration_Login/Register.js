@@ -15,7 +15,7 @@ export default function Register() {
     // set configurations
     const configuration = {
       method: "post",
-      url: "http://localhost:3000/register",
+      url: "http://localhost:5000/register",
       data: {
         name,
         email,
