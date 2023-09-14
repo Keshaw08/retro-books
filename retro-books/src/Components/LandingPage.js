@@ -101,6 +101,13 @@ export default function LandingPage() {
         </div>
       </div>
 
+
+      <div className="Container-fluid footer">
+      <footer className="footer">
+      {/* <p className="footer-text">Designed and Developed by Name</p> */}
+      <p className="footer-text"> He created all, and he controls all, At the end, It is only He Who Remains. 💜</p>
+    </footer>
+      </div>
       {/* <h1 className="text-center">Landing Page</h1>
 
       <section className="text-center" id="navigation">
