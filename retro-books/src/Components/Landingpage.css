@@ -87,6 +87,10 @@
   .title-cover-photo {
     padding-bottom: 20%;
   }
+  .title-cover-photo{
+    height: 110%;
+    width: 100%;
+  }
 }
 
 
@@ -205,6 +209,51 @@
     width: 100%;
   }
   .buy-books-section {
+    padding-bottom: 20%;
+  }
+  .buy-books-section-photo{
+    height: 120%;
+    width: 110%;
+  }
+  
+}
+
+/* Sell Books Section */
+
+.sell-books-section{
+  background-color: #44207a;
+  /* background-color: #fff; */
+  height: 100%;
+  width: 100%;
+  /* padding-bottom: 4%; */
+}
+
+.sell-books-section-photo{
+  height: 100%;
+  width: 80%;
+}
+
+.sell-books-section .part-1 {
+  padding: 8%;
+  padding-bottom: 4%;
+  font-size: 500%;
+  color: #bfafef;
+  font-family: cursive;
+}
+
+.sell-books-section .tagline {
+  font-size: 40%;
+  color: #bfafef;
+  font-family: "dancing script", cursive;
+}
+
+@media screen and (max-width: 600px) {
+  .sell-books-section .part-1 {
+    margin-top: 1%;
+    height: 100%;
+    width: 100%;
+  }
+  .sell-books-section {
     padding-bottom: 20%;
   }
 }

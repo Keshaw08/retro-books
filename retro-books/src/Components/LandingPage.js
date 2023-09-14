@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom"
 import logo from "./Assets/logo.png";
 import pic2 from "./Assets/pic2.png";
 import pic1 from "./Assets/pic1.png";
+import pic4 from "./Assets/pic4.png";
 import "./Landingpage.css";
 
 export default function LandingPage() {
@@ -80,10 +81,22 @@ export default function LandingPage() {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12 part-1">
             <p className="part-1-name"> Buy Used Books</p>
-            <p className="tagline"> "Explore the Treasure Trove of Preloved Stories: Buy Used Books and Dive into a World of Affordable Reading Pleasures!"</p>
+            <p className="tagline"> Explore the Treasure Trove of Preloved Stories: Buy Used Books and Dive into a World of Affordable Reading Pleasures!</p>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12 part-2">
             <img src={pic1} alt="" className="buy-books-section-photo img-fluid mx-auto d-block"/>
+          </div>
+        </div>
+      </div>
+
+      <div className="Container-fluid sell-books-section">
+        <div className="row">
+          <div className="col-lg-6 col-md-6 col-sm-12 part-1">
+            <p className="part-1-name"> Sell Books</p>
+            <p className="tagline"> Turn Your Bookshelf into Cash: Sell Used Books and Share Your Literary Treasures with Fellow Readers!</p>
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-12 part-2">
+            <img src={pic4} alt="" className="sell-books-section-photo img-fluid mx-auto d-block"/>
           </div>
         </div>
       </div>
