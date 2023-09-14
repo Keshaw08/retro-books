@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import "./Register.css";
+import logo from "../Assets/logo.png";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -37,21 +37,24 @@ export default function Register() {
       <div className="Auth-form-container d-flex justify-content-center">
         <form className="Auth-form" onSubmit={(e) => handleSubmit(e)}>
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign Up</h3>
-            <div className="text-center">
-              Already registered?{" "}
-              <span className="link-primary">
-              <a href="/login">Sign In</a>
-              </span>
+            <div className="logo">
+              <img src={logo} class="img-fluid" alt="..." />
             </div>
+            <h3 className="Auth-form-title">Sign Up</h3>
+            {/* <div className="text-center">
+              Already registered ?{" "}
+              <span className="link-primary">
+                <a className= "link" href="/login">Sign In</a>
+              </span>
+            </div> */}
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
                 type="name"
                 className="form-control mt-1"
                 value={name}
-            	onChange={(e) => setName(e.target.value)}
-            	placeholder="Enter Full Name"
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter Full Name"
               />
             </div>
             <div className="form-group mt-3">
@@ -74,7 +77,7 @@ export default function Register() {
                 placeholder="Enter password"
               />
             </div>
-            <div className="d-grid gap-2 mt-3">
+            <div className="d-grid gap-2 mt-4">
               <button
                 type="submit"
                 className="btn btn-primary"
@@ -83,11 +86,22 @@ export default function Register() {
                 Register
               </button>
             </div>
+            <div className="text-right mt-4">
+              Already registered ?{" "}
+              <span className="link-primary">
+                <a className="link" href="/login">
+                  Sign In
+                </a>
+              </span>
+            </div>
+
             {register ? (
-          <p className="text-success d-grid gap-2 mt-3">You Are Registered Successfully</p>
-        ) : (
-          <p className="text-danger d-grid gap-2 mt-3"> </p>
-        )}
+              <p className="text-success d-grid gap-2 mt-3">
+                You Are Registered Successfully
+              </p>
+            ) : (
+              <p className="text-danger d-grid gap-2 mt-3"> </p>
+            )}
           </div>
         </form>
       </div>

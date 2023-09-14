@@ -1,0 +1,76 @@
+.navbar-expand-lg {
+  background-color: #bfafef;
+  padding: 0;
+}
+
+.navbar-brand {
+  padding: 0;
+  margin-right: 0;
+}
+
+@media only screen and (min-width: 900px) {
+  .navbar-collapse {
+    /* background-color: red; */
+    display: flex;
+    align-items: flex-end;
+    margin-left: 72%;
+  }
+}
+
+.logo_nav {
+  width: 15%;
+  height: 25%;
+}
+
+@media screen and (max-width: 600px) {
+  .logo_nav {
+    width: 40%;
+    height: 60%;
+  }
+}
+.navbar-toggler {
+  border: 0px;
+}
+.rest-nav {
+  padding: 2%;
+}
+.rest-nav button {
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #330656;
+  color: #fff;
+  border: 0;
+}
+@media screen and (max-width: 600px) {
+  .rest-nav button {
+    font-size: 0.5rem;
+    font-weight: 500;
+    background-color: #44207a;
+    color: #fff;
+  }
+}
+
+.title-cover-photo {
+  height: 40rem;
+  width: 100%;
+  background-color: #44207a;
+}
+
+.cover-photo {
+  margin-top: 15%;
+  height: 80%;
+  width: 80%;
+}
+
+.title-cover-photo .part-1 {
+  padding: 8%;
+  font-size: 700%;
+  color: white;
+  font-family: cursive;
+}
+
+.tagline{
+  font-size: 40%;
+  color: #bfafef;
+  font-family: 'dancing script',  cursive;
+}

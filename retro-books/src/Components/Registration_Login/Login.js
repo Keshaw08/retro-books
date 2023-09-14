@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
 import Cookies from "universal-cookie";
 import "./Login.css";
-import Register from "./Register";
+import logo from "../Assets/logo.png";
 
 export default function Login() {
   const cookies = new Cookies();
@@ -41,17 +40,20 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className="login-page">
       <div className="Auth-form-container d-flex justify-content-center">
         <form className="Auth-form" onSubmit={(e) => handleSubmit(e)}>
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign In</h3>
-            <div className="text-center">
-              Already registered?{" "}
-              <span className="link-primary">
-              <a href="/register">Sign Up</a>
-              </span>
+            <div className="logo">
+              <img src={logo} class="img-fluid" alt="..." />
             </div>
+            <h3 className="Auth-form-title">Sign In</h3>
+            {/* <div className="text-center">
+              Not registered yet ?{" "}
+              <span className="link-primary">
+                <a className="link" href="/register">Sign Up</a>
+              </span>
+            </div> */}
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
@@ -72,7 +74,7 @@ export default function Login() {
                 placeholder="Enter password"
               />
             </div>
-            <div className="d-grid gap-2 mt-3">
+            <div className="d-grid gap-2 mt-4">
               <button
                 type="submit"
                 className="btn btn-primary"
@@ -81,18 +83,28 @@ export default function Login() {
                 Log In
               </button>
             </div>
-            <p className="forgot-password text-right mt-3">
-              Forgot <a href="#">password?</a>
-            </p>
+            {/* <p className="forgot-password text-right mt-3">
+              Forgot <a href="/register" className="forgot-password">password ?</a>
+            </p> */}
+            <div className="text-right mt-4">
+              Not registered yet ?{" "}
+              <span className="link-primary">
+                <a className="link" href="/register">
+                  Sign Up
+                </a>
+              </span>
+            </div>
 
             {login ? (
-              <p className="text-success d-grid gap-2 mt-3">You Are Logged in Successfully</p>
+              <p className="text-success d-grid gap-2 mt-3">
+                You Are Logged in Successfully
+              </p>
             ) : (
               <p className="text-danger d-grid gap-2 mt-3"> </p>
             )}
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
