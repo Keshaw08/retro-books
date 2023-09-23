@@ -1,6 +1,9 @@
 {
   "dependencies": {
     "@trendmicro/react-sidenav": "^0.5.0",
-    "react": "^18.2.0"
+    "goober": "^2.1.13",
+    "react": "^18.2.0",
+    "react-animated-heart": "^0.0.8",
+    "react-heart": "^1.0.6"
   }
 }

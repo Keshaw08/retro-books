@@ -27,6 +27,10 @@
     padding-bottom: 5%;
     /* border-bottom: 1px solid #44207a; */
   }
+  .navbar-expand-lg {
+    z-index: 10000;
+  }
+  
 }
 .navbar-toggler {
   border: 0px;

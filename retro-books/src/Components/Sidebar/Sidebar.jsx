@@ -8,6 +8,7 @@ import SideNav, {
 } from "@trendmicro/react-sidenav";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import "./Sidebar.css";
+import t from "../Assets/t.png";
 
 function Sidebar() {
   return (
@@ -25,7 +26,13 @@ function Sidebar() {
             </NavIcon>
             <NavText className="side-nav-text">Home</NavText>
           </NavItem>
-          <NavItem eventKey="charts">
+          <NavItem eventKey="home">
+            <NavIcon>
+              <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
+            </NavIcon>
+            <NavText className="side-nav-text">Wishlist</NavText>
+          </NavItem>
+          {/* <NavItem eventKey="charts">
             <NavIcon>
               <i
                 className="fa fa-fw fa-line-chart"
@@ -33,13 +40,8 @@ function Sidebar() {
               />
             </NavIcon>
             <NavText className="side-nav-text">Charts</NavText>
-            <NavItem eventKey="charts/linechart">
-              <NavText>Line Chart</NavText>
-            </NavItem>
-            <NavItem eventKey="charts/barchart">
-              <NavText>Bar Chart</NavText>
-            </NavItem>
-          </NavItem>
+          
+          </NavItem> */}
         </SideNav.Nav>
       </SideNav>
     </div>
