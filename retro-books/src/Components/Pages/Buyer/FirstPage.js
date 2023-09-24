@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Topbar from "../../Topbar/Topbar";
 import Cards from "../../Book_Cards/Cards";
 import "./FirstPage.css";
 import Sidebar from "../../Sidebar/Sidebar";
-import books from "../../Book_Cards/Books";
+// import books from "../../Book_Cards/Books";
+import { fetchBooks } from '../../Book_Cards/bookService';
 
 export default function FirstPage() {
+
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    async function fetchBookData() {
+      try {
+        const bookData = await fetchBooks();
+        setBooks(bookData);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
+    }
+
+    fetchBookData();
+  }, []);
+
   return (
     <div>
       <Topbar />

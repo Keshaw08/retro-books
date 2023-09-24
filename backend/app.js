@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 // require database connection
 const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
+const Book = require("./db/bookModel");
 const auth = require("./auth");
 
 // execute database connection
@@ -128,6 +129,32 @@ app.post("/login", (request, response) => {
         e,
       });
     });
+});
+
+
+// POST route to save book data to MongoDB
+app.post('/seller', (req, res) => {
+  const bookData = req.body;
+
+  const newBook = new Book(bookData);
+
+  newBook.save((err, book) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    return res.status(201).send(book);
+  });
+});
+
+// API route to fetch all books
+app.get('get-books', async (req, res) => {
+  try {
+    const books = await Book.find(); // Fetch all books from MongoDB
+    res.json(books);
+  } catch (error) {
+    console.error('Error fetching books:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 // free endpoint
