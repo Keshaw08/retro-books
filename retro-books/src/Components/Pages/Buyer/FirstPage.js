@@ -1,9 +1,9 @@
 import React from "react";
-import Topbar from "../Topbar/Topbar";
-import Cards from "../Book_Cards/Cards";
+import Topbar from "../../Topbar/Topbar";
+import Cards from "../../Book_Cards/Cards";
 import "./FirstPage.css";
-import Sidebar from "../Sidebar/Sidebar";
-import books from "../Book_Cards/Books";
+import Sidebar from "../../Sidebar/Sidebar";
+import books from "../../Book_Cards/Books";
 
 export default function FirstPage() {
   return (

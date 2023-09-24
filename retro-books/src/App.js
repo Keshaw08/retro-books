@@ -4,9 +4,10 @@ import "./App.css";
 import Register from "./Components/Registration_Login/Register";
 import Login from "./Components/Registration_Login/Login";
 import LandingPage from "./Components/LandingPage";
-import FirstPage from "./Components/Pages/FirstPage";
-import Wishlist from "./Components/Pages/Wishlist";
-import SellerPage from "./Components/Pages/SellerPage";
+import FirstPage from "./Components/Pages/Buyer/FirstPage";
+import Wishlist from "./Components/Pages/Buyer/Wishlist";
+import PostBooks from "./Components/Pages/Seller/PostBooks";
+import PostedBooks from "./Components/Pages/Seller/PostedBooks";
 
 function App() {
   return (
@@ -34,7 +35,15 @@ function App() {
         path="/seller"
         element={
           <ProtectedRoutes>
-            <SellerPage />
+            <PostBooks />
+          </ProtectedRoutes>
+        }
+      />
+      <Route
+        path="/postedbooks"
+        element={
+          <ProtectedRoutes>
+            <PostedBooks />
           </ProtectedRoutes>
         }
       />

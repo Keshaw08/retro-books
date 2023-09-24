@@ -1,5 +1,5 @@
 import React from "react";
-import Topbar from "../Topbar/Topbar";
+import Topbar from "../../Topbar/Topbar";
 
 function Wishlist() {
   return (
