@@ -19,7 +19,7 @@ function App() {
         path="/home"
         element={
           <ProtectedRoutes>
-            <FirstPage />
+              <FirstPage />
           </ProtectedRoutes>
         }
       />

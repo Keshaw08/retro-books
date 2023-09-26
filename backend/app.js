@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const path = require("path");
+const cors = require("cors");
 
 // require database connection
 const dbConnect = require("./db/dbConnect");
@@ -131,29 +134,83 @@ app.post("/login", (request, response) => {
     });
 });
 
+// // POST route to save book data to MongoDB
+// app.post('/seller', (req, res) => {
+//   const bookData = req.body;
 
-// POST route to save book data to MongoDB
-app.post('/seller', (req, res) => {
-  const bookData = req.body;
+//   const newBook = new Book(bookData);
 
-  const newBook = new Book(bookData);
+//   newBook.save((err, book) => {
+//     if (err) {
+//       return res.status(500).send(err);
+//     }
+//     return res.status(201).send(book);
+//   });
+// });
 
-  newBook.save((err, book) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    return res.status(201).send(book);
-  });
+// // API route to fetch all books
+// app.get('get-books', async (req, res) => {
+//   try {
+//     const books = await Book.find(); // Fetch all books from MongoDB
+//     res.json(books);
+//   } catch (error) {
+//     console.error('Error fetching books:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+// Multer storage configuration for handling file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // Folder where uploaded files will be stored
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
 });
 
-// API route to fetch all books
-app.get('get-books', async (req, res) => {
+const upload = multer({ storage });
+
+app.use(cors());
+app.use(express.json());
+
+// Serve uploaded files statically
+app.use("/uploads", express.static("uploads"));
+
+// POST route to save book data to MongoDB
+app.post("/seller", upload.single("bookImage"), async (req, res) => {
+  const { title, author, language, price, location, isbn } = req.body;
+
   try {
-    const books = await Book.find(); // Fetch all books from MongoDB
+    const newBook = new Book({
+      bookImage: req.file ? req.file.path : "",
+      title,
+      author,
+      language,
+      price,
+      location,
+      isbn,
+    });
+
+    const savedBook = await newBook.save();
+    res.json(savedBook);
+  } catch (error) {
+    console.error("Error saving book data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Add a new route to fetch all books
+app.get("/get-books", async (req, res) => {
+  try {
+    const books = await Book.find();
     res.json(books);
   } catch (error) {
-    console.error('Error fetching books:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error fetching books:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 

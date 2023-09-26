@@ -38,7 +38,7 @@ export default function Register() {
         <form className="Auth-form" onSubmit={(e) => handleSubmit(e)}>
           <div className="Auth-form-content">
             <div className="logo">
-              <img src={logo} class="img-fluid" alt="..." />
+              <img src={logo} className="img-fluid" alt="..." />
             </div>
             <h3 className="Auth-form-title">Sign Up</h3>
             {/* <div className="text-center">

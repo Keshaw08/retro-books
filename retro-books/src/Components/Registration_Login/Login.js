@@ -3,12 +3,14 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import "./Login.css";
 import logo from "../Assets/logo.png";
+import { useUser } from './UserContext';
 
 export default function Login() {
   const cookies = new Cookies();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useState(false);
+  const [_login, setLogin] = useState(false);
+  const { login } = useUser();
 
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
@@ -24,7 +26,11 @@ export default function Login() {
         password,
       },
     };
+
+    const userId = configuration.data.email;
+    login(userId);
     // make the API call
+
     axios(configuration)
       .then((result) => {
         setLogin(true);
@@ -34,6 +40,7 @@ export default function Login() {
         // redirect user to the auth page
         window.location.href = "/home";
         // localStorage.setItem('user',JSON.stringify({...result.user,email}))
+        
       })
       .catch((error) => {
         error = new Error();
@@ -46,7 +53,7 @@ export default function Login() {
         <form className="Auth-form" onSubmit={(e) => handleSubmit(e)}>
           <div className="Auth-form-content">
             <div className="logo">
-              <img src={logo} class="img-fluid" alt="..." />
+              <img src={logo} className="img-fluid" alt="..." />
             </div>
             <h3 className="Auth-form-title">Sign In</h3>
             {/* <div className="text-center">
@@ -96,7 +103,7 @@ export default function Login() {
               </span>
             </div>
 
-            {login ? (
+            {_login ? (
               <p className="text-success d-grid gap-2 mt-3">
                 You Are Logged in Successfully
               </p>
