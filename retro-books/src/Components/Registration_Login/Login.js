@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import "./Login.css";
 import logo from "../Assets/logo.png";
-import { useUser } from './UserContext';
+import { useUser } from "./UserContext";
 
 export default function Login() {
   const cookies = new Cookies();
@@ -27,8 +27,6 @@ export default function Login() {
       },
     };
 
-    const userId = configuration.data.email;
-    login(userId);
     // make the API call
 
     axios(configuration)
@@ -39,8 +37,13 @@ export default function Login() {
         });
         // redirect user to the auth page
         window.location.href = "/home";
-        // localStorage.setItem('user',JSON.stringify({...result.user,email}))
-        
+        localStorage.setItem('user',JSON.stringify({...result.user,email}))
+        // const userId = result.data.email;
+        // const userId = result.data.email;
+        // console.log("userId before login:", userId);
+        // login(userId);
+        // console.log("userId after login:", userId);
+        // console.log(email);
       })
       .catch((error) => {
         error = new Error();

@@ -4,7 +4,7 @@ import Heart from "react-animated-heart";
 import "./Cards.css";
 
 function Cards(props) {
-  const [isclick, setclick] = useState(false);
+  const [isClick, setClick] = useState(false);
   return (
     <div>
       <div className="card">
@@ -20,7 +20,7 @@ function Cards(props) {
               <h6 className="card-subtitle mb-2">Price - ₹ {props.price}</h6>
             </div>
             <div className="col-4">
-              <Heart isclick={isclick} onClick={() => setclick(!isclick)} />
+              <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
             </div>
           </div>
         </div>

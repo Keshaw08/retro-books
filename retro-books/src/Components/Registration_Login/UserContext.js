@@ -15,12 +15,12 @@ export function UserProvider({ children }) {
     setUserId(userId);
   };
 
-  const logout = () => {
-    setUserId(null);
-  };
+  // const logout = () => {
+  //   setUserId(null);
+  // };
   console.log("Current userId:", userId);
   return (
-    <UserContext.Provider value={{ userId, login, logout }}>
+    <UserContext.Provider value={{ userId, login}}>
       {children}
     </UserContext.Provider>
   );

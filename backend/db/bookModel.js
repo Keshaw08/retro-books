@@ -24,5 +24,6 @@ const bookSchema = new mongoose.Schema({
   price: String,
   location: String,
   isbn: String,
+  posted_by: String,
 })
 module.exports = mongoose.model.Books || mongoose.model("Books", bookSchema);

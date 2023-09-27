@@ -182,7 +182,8 @@ app.use("/uploads", express.static("uploads"));
 
 // POST route to save book data to MongoDB
 app.post("/seller", upload.single("bookImage"), async (req, res) => {
-  const { title, author, language, price, location, isbn } = req.body;
+  const { title, author, language, price, location, isbn, posted_by } = req.body;
+  console.log("here is the post request data :",req.body)
 
   try {
     const newBook = new Book({
@@ -193,6 +194,7 @@ app.post("/seller", upload.single("bookImage"), async (req, res) => {
       price,
       location,
       isbn,
+      posted_by,
     });
 
     const savedBook = await newBook.save();

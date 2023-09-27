@@ -1,147 +1,22 @@
-// import React, { useState } from 'react';
-// import Form from 'react-bootstrap/Form';
-// import Button from 'react-bootstrap/Button';
-// import './BookForm.css';
-
-// function BookForm() {
-//   const [bookImage, setBookImage] = useState('');
-//   const [title, setTitle] = useState('');
-//   const [author, setAuthor] = useState('');
-//   const [language, setLanguage] = useState('');
-//   const [price, setPrice] = useState('');
-//   const [location, setLocation] = useState('');
-//   const [isbn, setIsbn] = useState('');
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     const formData = {
-//       bookImage,
-//       title,
-//       author,
-//       language,
-//       price,
-//       location,
-//       isbn,
-//     };
-
-//     // Make a POST request to your backend server
-//     fetch('http://localhost:5000/seller', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(formData),
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         console.log('Book data saved:', data);
-//         // Reset the form fields after submission if needed
-//         setBookImage('');
-//         setTitle('');
-//         setAuthor('');
-//         setLanguage('');
-//         setPrice('');
-//         setLocation('');
-//         setIsbn('');
-//       })
-//       .catch((error) => {
-//         console.error('Error saving book data:', error);
-//       });
-//   };
-
-//   return (
-//     <div className="book-form-container">
-//         <h2 className="form-heading">Book Information</h2>
-//       <Form className="custom-form" onSubmit={handleSubmit}>
-//         <Form.Group controlId="bookImage">
-//           <Form.Label>Image of Book</Form.Label>
-//           <Form.Control
-//             type="file"
-//             onChange={(e) => setBookImage(e.target.value)}
-//           />
-//         </Form.Group>
-
-//         <Form.Group controlId="title">
-//           <Form.Label>Title of Book</Form.Label>
-//           <Form.Control
-//             type="text"
-//             value={title}
-//             onChange={(e) => setTitle(e.target.value)}
-//           />
-//         </Form.Group>
-
-//         <Form.Group controlId="author">
-//           <Form.Label>Author of Book</Form.Label>
-//           <Form.Control
-//             type="text"
-//             value={author}
-//             onChange={(e) => setAuthor(e.target.value)}
-//           />
-//         </Form.Group>
-
-//         <Form.Group controlId="language">
-//           <Form.Label>Language of Book</Form.Label>
-//           <Form.Control
-//             type="text"
-//             value={language}
-//             onChange={(e) => setLanguage(e.target.value)}
-//           />
-//         </Form.Group>
-
-//         <Form.Group controlId="price">
-//           <Form.Label>Price of Book</Form.Label>
-//           <Form.Control
-//             type="text"
-//             value={price}
-//             onChange={(e) => setPrice(e.target.value)}
-//           />
-//         </Form.Group>
-
-//         <Form.Group controlId="location">
-//           <Form.Label>Location of Seller</Form.Label>
-//           <Form.Control
-//             type="text"
-//             value={location}
-//             onChange={(e) => setLocation(e.target.value)}
-//           />
-//         </Form.Group>
-
-//         <Form.Group controlId="isbn">
-//           <Form.Label>ISBN of Book</Form.Label>
-//           <Form.Control
-//             type="text"
-//             value={isbn}
-//             onChange={(e) => setIsbn(e.target.value)}
-//           />
-//         </Form.Group>
-
-//         <Button variant="primary" type="submit">
-//           Submit
-//         </Button>
-//       </Form>
-//     </div>
-//   );
-// }
-
-// export default BookForm;
-
-import React, { useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import axios from 'axios';
-import './BookForm.css';
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import axios from "axios";
+import "./BookForm.css";
 
 function BookForm() {
+  const userDataString = localStorage.getItem("user");
   const [formData, setFormData] = useState({
     bookImage: null,
-    title: '',
-    author: '',
-    language: '',
-    price: '',
-    location: '',
-    isbn: '',
+    title: "",
+    author: "",
+    language: "",
+    price: "",
+    location: "",
+    isbn: "",
   });
+
+  const posted_by = userDataString ? JSON.parse(userDataString).email : "";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -159,102 +34,144 @@ function BookForm() {
     for (const key in formData) {
       data.append(key, formData[key]);
     }
+    // Append the known value (posted_by)
+    data.append("posted_by", posted_by);
 
     try {
-      const response = await axios.post('http://localhost:5000/seller', data);
-      console.log('Book data saved:', response.data);
+      const response = await axios.post("http://localhost:5000/seller", data);
+      console.log("Book data saved:", response.data);
       // Reset the form fields after submission if needed
       setFormData({
         bookImage: null,
-        title: '',
-        author: '',
-        language: '',
-        price: '',
-        location: '',
-        isbn: '',
+        title: "",
+        author: "",
+        language: "",
+        price: "",
+        location: "",
+        isbn: "",
       });
     } catch (error) {
-      console.error('Error saving book data:', error);
+      console.error("Error saving book data:", error);
     }
   };
 
   return (
     <div className="book-form-container">
-      <h2>Book Information</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="bookImage">
-          <Form.Label>Image of Book</Form.Label>
-          <Form.Control
-            type="file"
-            name="bookImage"
-            onChange={handleImageChange}
-          />
-        </Form.Group>
+      <h2 className="page-title">Enter Book Information</h2>
+      <form className="row g-3" onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="col-lg-4 col-md-4 col-sm-12">
+            <div className="col-12">
+              <label for="inputEmail4" className="form-label">
+                Image of Book
+              </label>
+              <Form.Group controlId="bookImage">
+                {/* <Form.Label>Image of Book</Form.Label> */}
+                <Form.Control
+                  type="file"
+                  name="bookImage"
+                  onChange={handleImageChange}
+                />
+              </Form.Group>
+            </div>
+          </div>
+          <div className="col-lg-8 col-md-8 col-sm-12">
+            <div className="col-12">
+              <label for="inputPassword4" className="form-label">
+                Title of Book
+              </label>
+              <Form.Group controlId="title">
+                {/* <Form.Label>Title of Book</Form.Label> */}
+                <Form.Control
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </div>
+            <div className="col-12">
+              <label for="inputAddress" className="form-label">
+                Author of Book
+              </label>
+              <Form.Group controlId="author">
+                {/* <Form.Label>Author of Book</Form.Label> */}
+                <Form.Control
+                  type="text"
+                  name="author"
+                  value={formData.author}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </div>
+            <div className="col-lg-6 col-sm-12">
+              <label for="inputEmail4" className="form-label">
+                Language of Book
+              </label>
+              <Form.Group controlId="language">
+                {/* <Form.Label>Language of Book</Form.Label> */}
+                <Form.Control
+                  type="text"
+                  name="language"
+                  value={formData.language}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </div>
+            <div className="col-lg-6 col-sm-12">
+              <label for="inputEmail4" className="form-label">
+                Price of Book
+              </label>
+              <Form.Group controlId="price">
+                {/* <Form.Label>Price of Book</Form.Label> */}
+                <Form.Control
+                  type="text"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </div>
+            <div className="col-lg-6 col-sm-12">
+              <label for="inputEmail4" className="form-label">
+                Location of Book
+              </label>
+              <Form.Group controlId="location">
+                {/* <Form.Label>Location of Seller</Form.Label> */}
+                <Form.Control
+                  type="text"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </div>
+            <div className="col-lg-6 col-sm-12">
+              <label for="inputEmail4" className="form-label">
+                ISBNX of Book
+              </label>
+              <Form.Group controlId="isbn">
+                {/* <Form.Label>ISBN of Book</Form.Label> */}
+                <Form.Control
+                  type="text"
+                  name="isbn"
+                  value={formData.isbn}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </div>
+          </div>
+        </div>
 
-        <Form.Group controlId="title">
-          <Form.Label>Title of Book</Form.Label>
-          <Form.Control
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="author">
-          <Form.Label>Author of Book</Form.Label>
-          <Form.Control
-            type="text"
-            name="author"
-            value={formData.author}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="language">
-          <Form.Label>Language of Book</Form.Label>
-          <Form.Control
-            type="text"
-            name="language"
-            value={formData.language}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="price">
-          <Form.Label>Price of Book</Form.Label>
-          <Form.Control
-            type="text"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="location">
-          <Form.Label>Location of Seller</Form.Label>
-          <Form.Control
-            type="text"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="isbn">
-          <Form.Label>ISBN of Book</Form.Label>
-          <Form.Control
-            type="text"
-            name="isbn"
-            value={formData.isbn}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+        <div className="col-12 submit-post-book">
+          {/* <button type="submit" className="btn btn-primary">
+            Sign in
+          </button> */}
+          <button className="button-74" type="submit">
+            Post
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

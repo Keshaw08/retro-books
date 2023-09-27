@@ -1,196 +1,71 @@
-/* BookForm.css
-
-.book-form {
-    background-color: #f0f2f5;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-label {
-    color: #673ab7;
-  }
-  
-  .form-control {
-    background-color: #ffffff;
-    border: 1px solid #dcdcdc;
-    color: #333;
-  }
-  
-  .btn-primary {
-    background-color: #673ab7;
-    border: none;
-  }
-  
-  .btn-primary:hover {
-    background-color: #512da8;
-  }
-  
-  /* You can adjust these shades of purple to your preference */
-
-/* BookForm.css */
-
-/* Form container */
-/* 
 .book-form-container {
-    background-color: #f5e1ff; /* Light purple 
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 20px auto;
-    max-width: 400px;
-  }
-
-  
-  .form-heading {
-    color: #6b5b95;
-  }
-  
-  .custom-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-  }
-
-  /* Form elements 
-  .book-form-container form label {
-    color: #6a0dad; /* Dark purple 
-  }
-  
-  .book-form-container form button[type="submit"] {
-    background-color: #8c4fff; /* Medium purple 
-    border: none;
-    color: white;
-  }
-  
-  /* Input fields 
-  .book-form-container form input[type="file"],
-  .book-form-container form input[type="text"] {
-    border: 1px solid #a77eff; /* Lighter purple 
-    border-radius: 4px;
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  /* Add more CSS rules as needed 
-
-
-  /* BookForm.css */
-
-/* .book-form-container {
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin: 20px;
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .form-heading {
-    color: #6b5b95;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .custom-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .custom-form label {
-    font-weight: bold;
-  }
-  
-  .custom-form input[type="file"],
-  .custom-form input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .custom-form button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #6b5b95;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .custom-form button[type="submit"]:hover {
-    background-color: #8a6baf;
-  }
-   */
-
-/* BookForm.css */
-
-.book-form-container {
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin: 20px;
-  max-width: 400px;
-  margin: 0 auto;
-  text-align: center;
+  margin: 2%;
+  padding: 2%;
+  /* background-color: #6C3082; better*/
+  background-color: #9966cc;
+  border-radius: 2rem;
+  color: white;
 }
 
-.form-heading {
-  color: #6b5b95;
-  font-size: 24px;
-  margin-bottom: 20px;
+.page-title {
+  padding-top: -2%;
+  padding-bottom: 2%;
 }
 
-.custom-form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.form-label {
+  color: white;
+  margin-top: 1%;
 }
 
-.custom-form label {
-  font-weight: bold;
+.submit-post-book {
+  /* background-color: red; */
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2%;
 }
 
-.custom-form input[type="file"],
-.custom-form input[type="text"] {
-  width: 100%;
-  padding: 15px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
-}
-
-.custom-form input[type="file"]:hover,
-.custom-form input[type="text"]:hover {
-  border-color: #6b5b95;
-}
-
-.custom-form button[type="submit"] {
-  width: 100%;
-  padding: 15px;
-  background-color: #6b5b95;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 18px;
+/* CSS */
+.button-74 {
+  background-color: #bfafef;
+  border: 2px solid #44207a;
+  border-radius: 30px;
+  box-shadow: #2b095d 4px 4px 0 0;
+  color: #44207a;
   cursor: pointer;
-  transition: background-color 0.3s;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-.custom-form button[type="submit"]:hover {
-  background-color: #8a6baf;
+.button-74:hover {
+  background-color: #986bdc;
+  color: #bfafef;
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .book-form-container {
+    padding: 4%;
+  }
+  .submit-post-book {
+    padding-right: 4%;
+  }
 }

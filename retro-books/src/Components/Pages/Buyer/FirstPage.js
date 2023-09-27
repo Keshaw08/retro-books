@@ -5,11 +5,11 @@ import "./FirstPage.css";
 import Sidebar from "../../Sidebar/Sidebar";
 // import books from "../../Book_Cards/Books";
 import axios from "axios";
-import { useUser } from "../../Registration_Login/UserContext";
+// import { useUser } from "../../Registration_Login/UserContext";
 
 export default function FirstPage() {
   const [books, setBooks] = useState([]);
-  const { userId, logout } = useUser();
+  // const { userId } = useUser();
 
   useEffect(() => {
     async function fetchBooks() {
@@ -23,6 +23,13 @@ export default function FirstPage() {
 
     fetchBooks();
   }, []);
+
+  const userDataString = localStorage.getItem("user");
+  var userData;
+  if (userDataString) {
+    userData = JSON.parse(userDataString);
+    console.log("User Email:", userData.email);
+  }
 
   return (
     <div>
@@ -42,6 +49,7 @@ export default function FirstPage() {
                     language={x.language}
                     price={x.price}
                     img={`http://localhost:5000/${x.bookImage}`}
+                    // posted_by={x.posted_by}
                   />
                 </div>
               ))}
@@ -49,7 +57,7 @@ export default function FirstPage() {
           </div>
         </div>
       </div>
-      <p>{"id : " + userId}</p>
+      {/* <p>{"id : " + userData.email}</p> */}
     </div>
   );
 }
