@@ -13,8 +13,9 @@
 }
 
 .card-body {
+  padding-top: 10%;
   width: 20rem;
-  height: 10rem;
+  height: 12rem;
 }
 
 .card-img-div {
@@ -51,6 +52,14 @@
   /* color: #645394; */
   color: #9966cc;
 }
+
+/* .card-title{
+  height: 100%;
+} */
+
+/* .author-title{
+  height: 30%;
+} */
 
 .card:hover {
   transform: scale(1.1);

@@ -62,7 +62,7 @@ function BookForm() {
         <div className="row">
           <div className="col-lg-4 col-md-4 col-sm-12">
             <div className="col-12">
-              <label for="inputEmail4" className="form-label">
+              <label htmlFor="inputEmail4" className="form-label">
                 Image of Book
               </label>
               <Form.Group controlId="bookImage">
@@ -77,7 +77,7 @@ function BookForm() {
           </div>
           <div className="col-lg-8 col-md-8 col-sm-12">
             <div className="col-12">
-              <label for="inputPassword4" className="form-label">
+              <label htmlFor="inputPassword4" className="form-label">
                 Title of Book
               </label>
               <Form.Group controlId="title">
@@ -91,7 +91,7 @@ function BookForm() {
               </Form.Group>
             </div>
             <div className="col-12">
-              <label for="inputAddress" className="form-label">
+              <label htmlFor="inputAddress" className="form-label">
                 Author of Book
               </label>
               <Form.Group controlId="author">
@@ -105,7 +105,7 @@ function BookForm() {
               </Form.Group>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <label for="inputEmail4" className="form-label">
+              <label htmlFor="inputEmail4" className="form-label">
                 Language of Book
               </label>
               <Form.Group controlId="language">
@@ -119,7 +119,7 @@ function BookForm() {
               </Form.Group>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <label for="inputEmail4" className="form-label">
+              <label htmlFor="inputEmail4" className="form-label">
                 Price of Book
               </label>
               <Form.Group controlId="price">
@@ -133,7 +133,7 @@ function BookForm() {
               </Form.Group>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <label for="inputEmail4" className="form-label">
+              <label htmlFor="inputEmail4" className="form-label">
                 Location of Book
               </label>
               <Form.Group controlId="location">
@@ -147,7 +147,7 @@ function BookForm() {
               </Form.Group>
             </div>
             <div className="col-lg-6 col-sm-12">
-              <label for="inputEmail4" className="form-label">
+              <label htmlFor="inputEmail4" className="form-label">
                 ISBNX of Book
               </label>
               <Form.Group controlId="isbn">

@@ -3,14 +3,14 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import "./Login.css";
 import logo from "../Assets/logo.png";
-import { useUser } from "./UserContext";
+// import { useUser } from "./UserContext";
 
 export default function Login() {
   const cookies = new Cookies();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [_login, setLogin] = useState(false);
-  const { login } = useUser();
+  // const { login } = useUser();
 
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page

@@ -16,6 +16,7 @@ export default function FirstPage() {
       try {
         const response = await axios.get("http://localhost:5000/get-books");
         setBooks(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching books:", error);
       }
@@ -24,12 +25,12 @@ export default function FirstPage() {
     fetchBooks();
   }, []);
 
-  const userDataString = localStorage.getItem("user");
-  var userData;
-  if (userDataString) {
-    userData = JSON.parse(userDataString);
-    console.log("User Email:", userData.email);
-  }
+  // const userDataString = localStorage.getItem("user");
+  // var userData;
+  // if (userDataString) {
+  //   userData = JSON.parse(userDataString);
+  //   console.log("User Email:", userData.email);
+  // }
 
   return (
     <div>
@@ -44,6 +45,7 @@ export default function FirstPage() {
               {books.map((x) => (
                 <div className="col-lg-4 col-md-6 col-sm-12 card-books">
                   <Cards
+                    key={x._id}
                     title={x.title}
                     author={x.author}
                     language={x.language}

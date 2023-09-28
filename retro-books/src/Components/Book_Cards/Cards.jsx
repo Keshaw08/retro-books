@@ -15,7 +15,7 @@ function Cards(props) {
           <div className="row">
             <div className="col-8">
               <h5 className="card-title">{props.title}</h5>
-              <h6 className="card-subtitle mb-2">Author - {props.author}</h6>
+              <h6 className="card-subtitle mb-2 author-title">Author - {props.author}</h6>
               <h6 className="card-subtitle mb-2">Language - {props.language}</h6>
               <h6 className="card-subtitle mb-2">Price - ₹ {props.price}</h6>
             </div>
