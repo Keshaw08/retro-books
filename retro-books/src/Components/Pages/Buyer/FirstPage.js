@@ -51,7 +51,7 @@ export default function FirstPage() {
                     language={x.language}
                     price={x.price}
                     img={`http://localhost:5000/${x.bookImage}`}
-                    // posted_by={x.posted_by}
+                    posted_by={x.posted_by}
                   />
                 </div>
               ))}
