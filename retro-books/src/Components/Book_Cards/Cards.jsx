@@ -43,7 +43,7 @@
 
 // export default Cards;
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Heart from "react-animated-heart";
 import "./Cards.css";
 import BookModal from "./BooksModal/BookModal";
@@ -62,15 +62,25 @@ function Cards(props) {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    const close = (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
+
   return (
     <div>
-      <div className="card" onClick={openModal}>
-        <div className="card-img-div">
+      <div className="card">
+        <div className="card-img-div" onClick={openModal}>
           <img src={props.img} className="card-img-top" alt="image of book" />
         </div>
         <div className="card-body">
           <div className="row">
-            <div className="col-8">
+            <div className="col-8" onClick={openModal}>
               <h5 className="card-title">{props.title}</h5>
               <h6 className="card-subtitle mb-2 author-title">
                 Author - {props.author}

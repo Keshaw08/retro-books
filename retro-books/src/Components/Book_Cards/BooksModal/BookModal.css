@@ -57,14 +57,24 @@
   border: 2px solid #32174d;
 }
 
-.details_modal_div{
-    padding: 3%;
-    color: #32174d;
+.details_modal_div {
+  padding: 3%;
+  color: #32174d;
 }
 
 @media screen and (max-width: 600px) {
-    .details_modal_div{
-        padding: 6%;
-    }
+  .details_modal_div {
+    padding: 6%;
   }
-  
+}
+
+.modal {
+  backdrop-filter: blur(10px);
+  /* background-color: #01223770; */
+  background-color: 32174d;
+}
+
+.card-img-div,
+.card-body {
+  cursor: pointer;
+}
