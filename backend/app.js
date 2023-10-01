@@ -12,6 +12,7 @@ const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
 const Book = require("./db/bookModel");
 const auth = require("./auth");
+const WishlistItem = require("./db/wishlistModal");
 
 // execute database connection
 dbConnect();
@@ -182,8 +183,9 @@ app.use("/uploads", express.static("uploads"));
 
 // POST route to save book data to MongoDB
 app.post("/seller", upload.single("bookImage"), async (req, res) => {
-  const { title, author, language, price, location, isbn, posted_by } = req.body;
-  console.log("here is the post request data :",req.body)
+  const { title, author, language, price, location, isbn, posted_by } =
+    req.body;
+  console.log("here is the post request data :", req.body);
 
   try {
     const newBook = new Book({
@@ -212,6 +214,42 @@ app.get("/get-books", async (req, res) => {
     res.json(books);
   } catch (error) {
     console.error("Error fetching books:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Add a book to the user's wishlist
+// Add a book to the user's wishlist
+app.post("/wishlist/add", async (req, res) => {
+  try {
+    const { userId, bookId } = req.body;
+    console.log(req.body);
+
+    // Check if a wishlist exists for the user, if not, create one
+    let wishlistItem = await WishlistItem.findOne({ userId, bookId });
+
+    if (!wishlistItem) {
+      wishlistItem = new WishlistItem({ userId, bookId });
+      await wishlistItem.save();
+      res.status(200).json({ message: "Book added to wishlist" });
+    } else {
+      res.status(400).json({ message: "Book is already in the wishlist" });
+    }
+  } catch (error) {
+    console.error("Error adding book to wishlist:", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+});
+
+// Fetch all wishlist items
+app.get("/wishlist-books", async (req, res) => {
+  try {
+    const wishlistItems = await WishlistItem.find();
+    res.json(wishlistItems);
+  } catch (error) {
+    console.error("Error fetching wishlist items:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });

@@ -44,9 +44,10 @@
 // export default Cards;
 
 import React, { useState, useEffect } from "react";
+import BookModal from "./BooksModal/BookModal";
 import Heart from "react-animated-heart";
 import "./Cards.css";
-import BookModal from "./BooksModal/BookModal";
+import axios from "axios"; 
 
 function Cards(props) {
   const [isClick, setClick] = useState(false);
@@ -72,6 +73,54 @@ function Cards(props) {
     return () => window.removeEventListener("keydown", close);
   }, []);
 
+  const userDataString = localStorage.getItem("user");
+  var userData;
+  if (userDataString) {
+    userData = JSON.parse(userDataString);
+    // console.log("User Email:", userData.email);
+  }
+
+  // const handleHeartClick = async () => {
+  //   setClick(!isClick);
+  //   try {
+  //     const response = await axios.post(`http://localhost:5000/home`, {
+  //       userId: userData.email, // Replace with the user's ID or email
+  //       bookId: props.bookId, // Replace with the book's ID
+  //     });
+
+  //     if (response.status === 200) {
+  //       // Book added to wishlist successfully
+  //       setClick(true); // Update the heart icon's state
+  //     } else {
+  //       // Handle errors, e.g., book already in wishlist
+  //     }
+  //   } catch (error) {
+  //     // Handle network or server errors
+  //     console.error(error);
+  //   }
+  // };
+
+  const handleHeartClick = async () => {
+    try {
+      const response = await axios.post(`http://localhost:5000/wishlist/add`, {
+        userId: userData.email, // Replace with the user's ID or email
+        bookId: props.bookId, // Replace with the book's ID
+      });
+  
+      if (response.status === 200) {
+        // Book added to wishlist successfully
+        setClick(true); // Update the heart icon's state
+      } else {
+        // Handle errors, e.g., book already in wishlist
+        // You can set an error state or display an error message
+      }
+    } catch (error) {
+      // Handle network or server errors
+      console.error(error);
+      // You can set an error state or display an error message
+    }
+  };
+  
   return (
     <div>
       <div className="card">
@@ -91,7 +140,8 @@ function Cards(props) {
               <h6 className="card-subtitle mb-2">Price - ₹ {props.price}</h6>
             </div>
             <div className="col-4">
-              <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
+              {/* <Heart isClick={isClick} onClick={() => setClick(!isClick)} /> */}
+              <Heart isClick={isClick} onClick={handleHeartClick} />
             </div>
           </div>
         </div>

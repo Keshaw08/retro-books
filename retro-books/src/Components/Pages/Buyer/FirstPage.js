@@ -45,7 +45,7 @@ export default function FirstPage() {
               {books.map((x) => (
                 <div className="col-lg-4 col-md-6 col-sm-12 card-books">
                   <Cards
-                    key={x._id}
+                    bookId={x._id}
                     title={x.title}
                     author={x.author}
                     language={x.language}
