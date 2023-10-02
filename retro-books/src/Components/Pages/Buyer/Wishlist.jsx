@@ -188,6 +188,7 @@
 // export default Wishlist;
 
 import React, { useEffect, useState } from "react";
+import Sidebar from "../../Sidebar/Sidebar";
 import Topbar from "../../Topbar/Topbar";
 import Cards from "../../Book_Cards/Cards";
 import axios from "axios";
@@ -266,26 +267,30 @@ function Wishlist() {
   return (
     <div>
       <Topbar />
-      <h1>This is the Wishlist Page.</h1>
-      <div className="col-lg-11 col-md-11 col-sm-11">
-        <div className="cards-section">
-          <div className="row">
-            {booksData.map((x) => (
-              <div
-                className="col-lg-4 col-md-6 col-sm-12 card-books"
-                key={x._id}
-              >
-                <Cards
-                  bookId={x._id}
-                  title={x.title}
-                  author={x.author}
-                  language={x.language}
-                  price={x.price}
-                  img={`http://localhost:5000/${x.bookImage}`}
-                  posted_by={x.posted_by}
-                />
-              </div>
-            ))}
+      <div className="row">
+        <div className="col-lg-1 col-md-1 col-sm-1">
+          <Sidebar />
+        </div>
+        <div className="col-lg-11 col-md-11 col-sm-11">
+          <div className="cards-section">
+            <div className="row">
+              {booksData.map((x) => (
+                <div
+                  className="col-lg-4 col-md-6 col-sm-12 card-books"
+                  key={x._id}
+                >
+                  <Cards
+                    bookId={x._id}
+                    title={x.title}
+                    author={x.author}
+                    language={x.language}
+                    price={x.price}
+                    img={`http://localhost:5000/${x.bookImage}`}
+                    posted_by={x.posted_by}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

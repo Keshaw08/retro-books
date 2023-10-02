@@ -46,6 +46,7 @@
 import React, { useState, useEffect } from "react";
 import BookModal from "./BooksModal/BookModal";
 import Heart from "react-animated-heart";
+// import Heart from "./index.tsx";
 import "./Cards.css";
 import axios from "axios"; 
 
@@ -125,7 +126,7 @@ function Cards(props) {
     <div>
       <div className="card">
         <div className="card-img-div" onClick={openModal}>
-          <img src={props.img} className="card-img-top" alt="image of book" />
+          <img src={props.img} className="card-img-top" alt={props.title} />
         </div>
         <div className="card-body">
           <div className="row">
