@@ -13,6 +13,7 @@ const User = require("./db/userModel");
 const Book = require("./db/bookModel");
 const auth = require("./auth");
 const WishlistItem = require("./db/wishlistModal");
+const Review = require("./db/reviewModal");
 
 // execute database connection
 dbConnect();
@@ -251,6 +252,30 @@ app.get("/wishlist-books", async (req, res) => {
   } catch (error) {
     console.error("Error fetching wishlist items:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/reviews", async (req, res) => {
+  try {
+    const { reviewBookId, email, review } = req.body;
+    const newReview = new Review({ reviewBookId, email, review });
+    await newReview.save();
+    res.sendStatus(200);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
+});
+
+app.get("/reviews", async (req, res) => {
+  try {
+    const { reviewBookId } = req.query;
+    // Query MongoDB based on bookId and send the reviews back as JSON
+    const reviews = await Review.find({ reviewBookId });
+    res.json(reviews);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
   }
 });
 

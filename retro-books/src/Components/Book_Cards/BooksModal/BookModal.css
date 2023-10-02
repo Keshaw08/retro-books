@@ -10,6 +10,7 @@
   height: 60%;
   width: 80%;
   padding-top: 10%;
+  padding-left: 4%;
 }
 
 @media screen and (min-width: 1100px) {
@@ -77,4 +78,69 @@
 .card-img-div,
 .card-body {
   cursor: pointer;
+}
+
+.major-details .key {
+  display: inline-block;
+  width: 10rem;
+  padding: 1%;
+  padding-left: 2%;
+  background-color: #32174d;
+  color: #bfafef;
+  /* color: #32174d; */
+  border-top-left-radius: 5rem;
+  border-bottom-left-radius: 5rem;
+}
+
+.major-details .value {
+  display: inline-block;
+  width: 30rem;
+  padding: 1%;
+  padding-right: 2%;
+}
+
+.major-details .value-title {
+  display: inline-block;
+  width: 30rem;
+  padding: 1%;
+  padding-right: 2%;
+  background-color: #32174d;
+  color: #bfafef;
+  /* color: #fff; */
+  border-top-right-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+}
+
+.major-details .value:hover {
+  background-color: #32174d;
+  color: #bfafef;
+  /* color: #fff; */
+  border-top-right-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .major-details .key {
+    display: inline-block;
+    width: 10rem;
+    padding: 1%;
+    padding-left: 3%;
+    background-color: #32174d;
+    color: #bfafef;
+    border-top-left-radius: 5rem;
+    border-bottom-left-radius: 5rem;
+  }
+  .major-details .value {
+    display: inline-block;
+    padding: 1%;
+    padding-right: 2%;
+  }
+  .major-details .value:hover {
+    background-color: #bfafef;
+    color: #32174d;
+  }
+}
+
+.text-form {
+  color: #32174d;
 }

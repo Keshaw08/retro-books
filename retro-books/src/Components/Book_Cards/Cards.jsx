@@ -48,7 +48,7 @@ import BookModal from "./BooksModal/BookModal";
 import Heart from "react-animated-heart";
 // import Heart from "./index.tsx";
 import "./Cards.css";
-import axios from "axios"; 
+import axios from "axios";
 
 function Cards(props) {
   const [isClick, setClick] = useState(false);
@@ -107,7 +107,7 @@ function Cards(props) {
         userId: userData.email, // Replace with the user's ID or email
         bookId: props.bookId, // Replace with the book's ID
       });
-  
+
       if (response.status === 200) {
         // Book added to wishlist successfully
         setClick(true); // Update the heart icon's state
@@ -121,7 +121,7 @@ function Cards(props) {
       // You can set an error state or display an error message
     }
   };
-  
+
   return (
     <div>
       <div className="card">
@@ -158,6 +158,8 @@ function Cards(props) {
         language={props.language}
         price={props.price}
         posted_by={props.posted_by}
+        isbn={props.isbn}
+        bookId={props.bookId}
       />
     </div>
   );
