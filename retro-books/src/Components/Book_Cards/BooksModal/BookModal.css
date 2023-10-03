@@ -7,8 +7,8 @@
 }
 
 .image_modal_div img {
-  height: 60%;
-  width: 80%;
+  max-width: 60%;
+  max-width: 80%;
   padding-top: 10%;
   padding-left: 4%;
 }
