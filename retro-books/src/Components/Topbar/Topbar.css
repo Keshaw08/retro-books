@@ -30,7 +30,6 @@
   .navbar-expand-lg {
     z-index: 10000;
   }
-  
 }
 .navbar-toggler {
   border: 0px;
@@ -78,4 +77,14 @@
 .nav-link {
   color: #44207a;
   font-size: 1.1rem;
+}
+
+.btn-outline-danger{
+  margin-left: 0.6%;
+}
+
+@media screen and (max-width: 600px) {
+  .btn-outline-danger{
+      margin-top: 3%;
+  }
 }

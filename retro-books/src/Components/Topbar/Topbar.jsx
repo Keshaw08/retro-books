@@ -1,7 +1,9 @@
 import React from "react";
+import LogoutButton from "../Registration_Login/LogoutButton";
 import { useNavigate } from "react-router-dom";
 import logo from "../Assets/logo.png";
 import "./Topbar.css";
+
 
 function Topbar() {
   const navigate = useNavigate();
@@ -72,6 +74,7 @@ function Topbar() {
               Search
             </button>
           </form>
+          <LogoutButton />
         </div>
       </div>
     </nav>

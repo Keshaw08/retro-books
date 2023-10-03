@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import LogoutButton from "../Registration_Login/LogoutButton";
 import logo from "../Assets/logo.png";
 import "./Topbar.css";
 
@@ -72,6 +73,7 @@ function TopbarSeller() {
               Search
             </button>
           </form>
+          <LogoutButton />
         </div>
       </div>
     </nav>
