@@ -287,6 +287,7 @@ function Wishlist() {
                     price={x.price}
                     img={`http://localhost:5000/${x.bookImage}`}
                     posted_by={x.posted_by}
+                    isbn={x.isbn}
                   />
                 </div>
               ))}

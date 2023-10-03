@@ -45,13 +45,14 @@ function PostedBooks() {
               {books.map((x) => (
                 <div className="col-lg-4 col-md-6 col-sm-12 card-books">
                   <Cards
-                    // key={x._id}
+                    bookId={x._id}
                     title={x.title}
                     author={x.author}
                     language={x.language}
                     price={x.price}
                     img={`http://localhost:5000/${x.bookImage}`}
-                    // posted_by={x.posted_by}
+                    posted_by={x.posted_by}
+                    isbn={x.isbn}
                   />
                 </div>
               ))}
