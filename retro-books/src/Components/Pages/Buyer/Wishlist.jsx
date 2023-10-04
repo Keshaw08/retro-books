@@ -261,6 +261,28 @@ function Wishlist() {
     return <div>Error: {error.message}</div>;
   }
 
+  async function handleRemoveFromWishlist(bookId) {
+    try {
+      const response = await axios.delete(
+        "http://localhost:5000/wishlist/delete",
+        {
+          data: {
+            userId: userData.email,
+            bookId: bookId,
+          },
+        }
+      );
+      // Update the wishlistItems state to reflect the changes
+      setWishlistItems((prevItems) =>
+        prevItems.filter((item) => item.bookId !== bookId)
+      );
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error removing book from wishlist:", error);
+    }
+    console.log("delete book Id is : ", bookId);
+  }
+
   console.log("wishlistItems : ", wishlistItems);
   console.log("booksData : ", booksData);
 
@@ -288,6 +310,8 @@ function Wishlist() {
                     img={`http://localhost:5000/${x.bookImage}`}
                     posted_by={x.posted_by}
                     isbn={x.isbn}
+                    delete={true}
+                    deleteFunction={handleRemoveFromWishlist}
                   />
                 </div>
               ))}

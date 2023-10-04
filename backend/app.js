@@ -219,6 +219,20 @@ app.get("/get-books", async (req, res) => {
   }
 });
 
+app.delete("/seller/:bookId", async (req, res) => {
+  try {
+    const { bookId } = req.params;
+
+    // Use Mongoose to find and delete the book by its ID
+    await Book.findByIdAndDelete(bookId);
+
+    res.status(200).json({ message: "Book deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting book:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // Add a book to the user's wishlist
 // Add a book to the user's wishlist
 app.post("/wishlist/add", async (req, res) => {
@@ -252,6 +266,22 @@ app.get("/wishlist-books", async (req, res) => {
   } catch (error) {
     console.error("Error fetching wishlist items:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.delete("/wishlist/delete", async (req, res) => {
+  try {
+    const { userId, bookId } = req.body;
+
+    // Find and delete the wishlist item
+    await WishlistItem.findOneAndDelete({ userId, bookId });
+
+    res.status(200).json({ message: "Book removed from wishlist" });
+  } catch (error) {
+    console.error("Error removing book from wishlist:", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 });
 

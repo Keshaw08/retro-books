@@ -31,6 +31,22 @@ function PostedBooks() {
     }
   }, [userData]); // Add userData as a dependency to re-fetch books when the user changes
 
+  async function handleDeleteBook(bookId) {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/seller/${bookId}`
+      );
+
+      // Remove the deleted book from the state
+      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== bookId));
+
+      console.log(response.data.message);
+    } catch (error) {
+      console.error("Error deleting book:", error);
+    }
+    console.log("delete book Id is : ", bookId);
+  }
+
   return (
     <div>
       <TopbarSeller />
@@ -53,6 +69,8 @@ function PostedBooks() {
                     img={`http://localhost:5000/${x.bookImage}`}
                     posted_by={x.posted_by}
                     isbn={x.isbn}
+                    delete={true}
+                    deleteFunction={handleDeleteBook}
                   />
                 </div>
               ))}

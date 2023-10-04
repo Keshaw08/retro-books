@@ -141,8 +141,31 @@ function Cards(props) {
               <h6 className="card-subtitle mb-2">Price - ₹ {props.price}</h6>
             </div>
             <div className="col-4">
-              {/* <Heart isClick={isClick} onClick={() => setClick(!isClick)} /> */}
-              <Heart isClick={isClick} onClick={handleHeartClick} />
+              {props.delete ? ( //handleRemoveFromWishlist(props.bookId)
+                <div
+                  className="dustbin"
+                  onClick={() => props.deleteFunction(props.bookId)}
+                >
+                  <div className="icon-trash">
+                    <div
+                      className="trash-lid"
+                      // style="background-color: #E5E9EA"
+                    ></div>
+                    <div
+                      className="trash-container"
+                      // style="background-color: #E5E9EA"
+                    ></div>
+                    <div className="trash-line-1"></div>
+                    <div className="trash-line-2"></div>
+                    <div className="trash-line-3"></div>
+                  </div>
+                </div>
+              ) : (
+                <div className="col-4">
+                  {/* <Heart isClick={isClick} onClick={() => setClick(!isClick)} /> */}
+                  <Heart isClick={isClick} onClick={handleHeartClick} />
+                </div>
+              )}
             </div>
           </div>
         </div>
