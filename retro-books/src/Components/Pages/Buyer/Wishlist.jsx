@@ -204,6 +204,7 @@ function Wishlist() {
   const [booksData, setBooksData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchedBook, setSearchedBook] = useState(null);
 
   useEffect(() => {
     async function fetchWishlistItems() {
@@ -286,9 +287,24 @@ function Wishlist() {
   console.log("wishlistItems : ", wishlistItems);
   console.log("booksData : ", booksData);
 
+  const searchBookById = (bookName) => {
+    const foundBook = booksData.find(
+      //search about which algorithm does find uses.
+      (book) => book.title.toLowerCase() === bookName.toLowerCase()
+    );
+
+    if (foundBook) {
+      setSearchedBook(foundBook);
+    } else {
+      setSearchedBook(null); // Reset searchedBook if not found
+    }
+
+    console.log("search book : ", bookName);
+  };
+
   return (
     <div>
-      <Topbar />
+      <Topbar searchFunction={searchBookById} />
       <div className="row">
         <div className="col-lg-1 col-md-1 col-sm-1">
           <Sidebar />
@@ -296,25 +312,42 @@ function Wishlist() {
         <div className="col-lg-11 col-md-11 col-sm-11">
           <div className="cards-section">
             <div className="row">
-              {booksData.map((x) => (
-                <div
-                  className="col-lg-4 col-md-6 col-sm-12 card-books"
-                  key={x._id}
-                >
+              {searchedBook ? (
+                <div className="col-lg-4 col-md-6 col-sm-12 card-books">
                   <Cards
-                    bookId={x._id}
-                    title={x.title}
-                    author={x.author}
-                    language={x.language}
-                    price={x.price}
-                    img={`http://localhost:5000/${x.bookImage}`}
-                    posted_by={x.posted_by}
-                    isbn={x.isbn}
+                    bookId={searchedBook._id}
+                    title={searchedBook.title}
+                    author={searchedBook.author}
+                    language={searchedBook.language}
+                    price={searchedBook.price}
+                    img={`http://localhost:5000/${searchedBook.bookImage}`}
+                    posted_by={searchedBook.posted_by}
+                    isbn={searchedBook.isbn}
                     delete={true}
                     deleteFunction={handleRemoveFromWishlist}
                   />
                 </div>
-              ))}
+              ) : (
+                booksData.map((x) => (
+                  <div
+                    className="col-lg-4 col-md-6 col-sm-12 card-books"
+                    key={x._id}
+                  >
+                    <Cards
+                      bookId={x._id}
+                      title={x.title}
+                      author={x.author}
+                      language={x.language}
+                      price={x.price}
+                      img={`http://localhost:5000/${x.bookImage}`}
+                      posted_by={x.posted_by}
+                      isbn={x.isbn}
+                      delete={true}
+                      deleteFunction={handleRemoveFromWishlist}
+                    />
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

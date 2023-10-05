@@ -47,9 +47,25 @@ function PostedBooks() {
     console.log("delete book Id is : ", bookId);
   }
 
+  const [searchedBook, setSearchedBook] = useState(null);
+  const searchBookById = (bookName) => {
+    const foundBook = books.find(
+      //search about which algorithm does find uses.
+      (book) => book.title.toLowerCase() === bookName.toLowerCase()
+    );
+
+    if (foundBook) {
+      setSearchedBook(foundBook);
+    } else {
+      setSearchedBook(null); // Reset searchedBook if not found
+    }
+
+    console.log("search book : ", bookName);
+  };
+
   return (
     <div>
-      <TopbarSeller />
+      <TopbarSeller searchFunction={searchBookById} />
       {/* <h1>All books you posted are here.</h1> */}
       <div className="row">
         <div className="col-lg-1 col-md-1 col-sm-1">
@@ -58,22 +74,39 @@ function PostedBooks() {
         <div className="col-lg-11 col-md-11 col-sm-11">
           <div className="cards-section">
             <div className="row">
-              {books.map((x) => (
+              {searchedBook ? (
                 <div className="col-lg-4 col-md-6 col-sm-12 card-books">
                   <Cards
-                    bookId={x._id}
-                    title={x.title}
-                    author={x.author}
-                    language={x.language}
-                    price={x.price}
-                    img={`http://localhost:5000/${x.bookImage}`}
-                    posted_by={x.posted_by}
-                    isbn={x.isbn}
+                    bookId={searchedBook._id}
+                    title={searchedBook.title}
+                    author={searchedBook.author}
+                    language={searchedBook.language}
+                    price={searchedBook.price}
+                    img={`http://localhost:5000/${searchedBook.bookImage}`}
+                    posted_by={searchedBook.posted_by}
+                    isbn={searchedBook.isbn}
                     delete={true}
                     deleteFunction={handleDeleteBook}
                   />
                 </div>
-              ))}
+              ) : (
+                books.map((x) => (
+                  <div className="col-lg-4 col-md-6 col-sm-12 card-books">
+                    <Cards
+                      bookId={x._id}
+                      title={x.title}
+                      author={x.author}
+                      language={x.language}
+                      price={x.price}
+                      img={`http://localhost:5000/${x.bookImage}`}
+                      posted_by={x.posted_by}
+                      isbn={x.isbn}
+                      delete={true}
+                      deleteFunction={handleDeleteBook}
+                    />
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

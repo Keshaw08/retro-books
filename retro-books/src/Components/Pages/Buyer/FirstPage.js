@@ -9,6 +9,8 @@ import axios from "axios";
 
 export default function FirstPage() {
   const [books, setBooks] = useState([]);
+  const [searchedBook, setSearchedBook] = useState(null); // This will hold the searched book
+
   // const { userId } = useUser();
 
   useEffect(() => {
@@ -25,16 +27,30 @@ export default function FirstPage() {
     fetchBooks();
   }, []);
 
+  const searchBookById = (bookName) => {
+    const foundBook = books.find(
+      //search about which algorithm does find uses.
+      (book) => book.title.toLowerCase() === bookName.toLowerCase()
+    );
+
+    if (foundBook) {
+      setSearchedBook(foundBook);
+    } else {
+      setSearchedBook(null); // Reset searchedBook if not found
+    }
+
+    console.log("search book : ", bookName);
+  };
   // const userDataString = localStorage.getItem("user");
   // var userData;
   // if (userDataString) {
   //   userData = JSON.parse(userDataString);
   //   console.log("User Email:", userData.email);
   // }
-
+  console.log(books);
   return (
     <div>
-      <Topbar />
+      <Topbar searchFunction={searchBookById} />
       <div className="row">
         <div className="col-lg-1 col-md-1 col-sm-1">
           <Sidebar />
@@ -42,20 +58,35 @@ export default function FirstPage() {
         <div className="col-lg-11 col-md-11 col-sm-11">
           <div className="cards-section">
             <div className="row">
-              {books.map((x) => (
+              {searchedBook ? (
                 <div className="col-lg-4 col-md-6 col-sm-12 card-books">
                   <Cards
-                    bookId={x._id}
-                    title={x.title}
-                    author={x.author}
-                    language={x.language}
-                    price={x.price}
-                    img={`http://localhost:5000/${x.bookImage}`}
-                    posted_by={x.posted_by}
-                    isbn={x.isbn}
+                    bookId={searchedBook._id}
+                    title={searchedBook.title}
+                    author={searchedBook.author}
+                    language={searchedBook.language}
+                    price={searchedBook.price}
+                    img={`http://localhost:5000/${searchedBook.bookImage}`}
+                    posted_by={searchedBook.posted_by}
+                    isbn={searchedBook.isbn}
                   />
                 </div>
-              ))}
+              ) : (
+                books.map((x) => (
+                  <div className="col-lg-4 col-md-6 col-sm-12 card-books">
+                    <Cards
+                      bookId={x._id}
+                      title={x.title}
+                      author={x.author}
+                      language={x.language}
+                      price={x.price}
+                      img={`http://localhost:5000/${x.bookImage}`}
+                      posted_by={x.posted_by}
+                      isbn={x.isbn}
+                    />
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import LogoutButton from "../Registration_Login/LogoutButton";
 import logo from "../Assets/logo.png";
 import "./Topbar.css";
 
-function TopbarSeller() {
+function TopbarSeller(props) {
   const navigate = useNavigate();
 
   const navigateToBuyer = () => {
@@ -16,6 +16,13 @@ function TopbarSeller() {
   };
   const navigateToPostedBooks = () => {
     navigate("/postedbooks");
+  };
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault();
+    e.preventDefault();
+    const searchValue = e.target.elements.search.value;
+    props.searchFunction(searchValue);
+    // console.log("Search value: ", searchValue);
   };
   return (
     <nav className="navbar navbar-expand-lg">
@@ -62,12 +69,13 @@ function TopbarSeller() {
               </a>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          <form className="d-flex" role="search" onSubmit={handleSearchSubmit}>
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              name="search"
             />
             <button className="btn btn-outline-success" type="submit">
               Search
