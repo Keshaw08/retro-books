@@ -61,6 +61,7 @@
 import React, { useState, useEffect } from "react";
 import "./BookModal.css";
 import BookReview from "../BooksReview/BookReview";
+import { FaStar } from "react-icons/fa";
 
 function BookModal(props) {
   const {
@@ -126,6 +127,69 @@ function BookModal(props) {
     fetchReviews();
   }, [selectedBookId]);
 
+  // const handleRatingClick = (value) => {
+  //   // Send the rating to the backend
+  //   fetch("http://localhost:5000/api/rate-book", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({  bookId: selectedBookId, rating: value  }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // Handle success or display an error message
+  //       console.log("Rating submitted:", data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+  // };
+
+  // const [rating, setRating] = useState(0);
+  const [averageRating, setAverageRating] = useState(0); // State to store average rating
+  const [rating, setRating] = useState(averageRating || 0);
+
+  const handleRatingClick = (value) => {
+    // Send the rating to the backend
+    fetch("http://localhost:5000/api/rate-book", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ bookId: selectedBookId, rating: value }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // Rating submitted successfully, you can display a success message if needed
+          console.log("Rating submitted:", data);
+          // Update the local rating state
+          setRating(value);
+        } else {
+          // Handle errors if the rating submission fails
+          console.error("Error:", data.error);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  useEffect(() => {
+    // Fetch the average rating and set it as the initial rating when the component mounts
+    fetch(`http://localhost:5000/api/get-average-rating?bookId=${bookId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setAverageRating(data.averageRating);
+        setRating(data.averageRating); // Set the initial rating to the average rating
+        console.log("Average Rating:", data.averageRating); // Add this line
+      })
+      .catch((error) => {
+        console.error("Error fetching average rating:", error);
+      });
+  }, [bookId]);
+
   return (
     <div>
       <div
@@ -181,6 +245,29 @@ function BookModal(props) {
                       <div className="key">ISBNX</div>
                       <div className="value">{isbn}</div>
                     </h5>
+                  </div>
+                  <br />
+                  <div className="row">
+                    <div className="col-3 user-rating">
+                      <h5>User Rating </h5>
+                    </div>
+                    <div className="col-9">
+                      {[1, 2, 3, 4, 5].map((value) => (
+                        <FaStar
+                          className="rating-stars"
+                          key={value}
+                          onClick={() => handleRatingClick(value)}
+                          style={{
+                            color:
+                              value <= (rating || averageRating)
+                                ? "gold"
+                                : "gray",
+                            cursor: "pointer",
+                            fontSize: "2rem", // Set the font size to 2 rem
+                          }}
+                        />
+                      ))}
+                    </div>
                   </div>
                   <br />
                   <h5>Reviews</h5>

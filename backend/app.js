@@ -14,6 +14,7 @@ const Book = require("./db/bookModel");
 const auth = require("./auth");
 const WishlistItem = require("./db/wishlistModal");
 const Review = require("./db/reviewModal");
+const Rating = require("./db/ratingSchema");
 
 // execute database connection
 dbConnect();
@@ -307,6 +308,54 @@ app.get("/reviews", async (req, res) => {
     console.error(error);
     res.sendStatus(500);
   }
+});
+
+// API endpoint for rating a book
+app.post("/api/rate-book", (req, res) => {
+  const { bookId, rating } = req.body;
+
+  if (!bookId || !rating) {
+    return res.status(400).json({ error: "Invalid request" });
+  }
+
+  // Create a new rating document and save it to the MongoDB collection
+  const newRating = new Rating({ bookId, rating });
+
+  newRating
+    .save()
+    .then(() => {
+      res.json({ success: true });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    });
+});
+
+// API endpoint to get the average rating for a book
+app.get("/api/get-average-rating", (req, res) => {
+  const bookId = req.query.bookId;
+
+  Rating.aggregate([
+    { $match: { bookId: bookId } },
+    {
+      $group: {
+        _id: "$bookId",
+        averageRating: { $avg: "$rating" },
+      },
+    },
+  ])
+    .then((result) => {
+      if (result.length > 0) {
+        res.json({ averageRating: result[0].averageRating });
+      } else {
+        res.json({ averageRating: 0 }); // No ratings yet, return 0
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching average rating:", error);
+      res.status(500).json({ error: "Internal server error" });
+    });
 });
 
 // free endpoint

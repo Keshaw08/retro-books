@@ -144,3 +144,12 @@
 .text-form {
   color: #32174d;
 }
+
+.rating-stars {
+  font-size: 1rem;
+}
+
+.user-rating {
+  padding-top: 1%;
+  /* padding-left: 2%; */
+}
