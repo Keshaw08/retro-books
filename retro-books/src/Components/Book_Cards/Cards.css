@@ -83,7 +83,15 @@
   display: inline-block;
 }
 
+.edit-button {
+  padding-left: 34%;
+  font-size: 1.8rem;
+}
 .dustbin {
+  padding-top: 40%;
+}
+
+.no-edit-button {
   padding-top: 80%;
 }
 

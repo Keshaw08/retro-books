@@ -32,19 +32,40 @@ function PostedBooks() {
   }, [userData]); // Add userData as a dependency to re-fetch books when the user changes
 
   async function handleDeleteBook(bookId) {
-    try {
-      const response = await axios.delete(
-        `http://localhost:5000/seller/${bookId}`
-      );
+    var answer = window.confirm("Are you sure you want to delete the book?");
+    if (answer) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:5000/seller/${bookId}`
+        );
 
-      // Remove the deleted book from the state
-      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== bookId));
+        // Remove the deleted book from the state
+        setBooks((prevBooks) =>
+          prevBooks.filter((book) => book._id !== bookId)
+        );
 
-      console.log(response.data.message);
-    } catch (error) {
-      console.error("Error deleting book:", error);
+        console.log(response.data.message);
+      } catch (error) {
+        console.error("Error deleting book:", error);
+      }
+      console.log("delete book Id is : ", bookId);
+    } else {
+      //some code
+      console.log("NO");
     }
-    console.log("delete book Id is : ", bookId);
+    // try {
+    //   const response = await axios.delete(
+    //     `http://localhost:5000/seller/${bookId}`
+    //   );
+
+    //   // Remove the deleted book from the state
+    //   setBooks((prevBooks) => prevBooks.filter((book) => book._id !== bookId));
+
+    //   console.log(response.data.message);
+    // } catch (error) {
+    //   console.error("Error deleting book:", error);
+    // }
+    // console.log("delete book Id is : ", bookId);
   }
 
   const [searchedBook, setSearchedBook] = useState(null);
@@ -62,6 +83,11 @@ function PostedBooks() {
 
     console.log("search book : ", bookName);
   };
+
+  const [currentBook, setCurrentBook] = useState("");
+  const editBook = (currentBookId) => {
+    setCurrentBook(currentBookId);
+  }
 
   return (
     <div>
@@ -87,6 +113,8 @@ function PostedBooks() {
                     isbn={searchedBook.isbn}
                     delete={true}
                     deleteFunction={handleDeleteBook}
+                    edit={true}
+                    editFunction={editBook}
                   />
                 </div>
               ) : (
@@ -103,6 +131,8 @@ function PostedBooks() {
                       isbn={x.isbn}
                       delete={true}
                       deleteFunction={handleDeleteBook}
+                      edit={true}
+                      editFunction={editBook}
                     />
                   </div>
                 ))

@@ -263,25 +263,50 @@ function Wishlist() {
   }
 
   async function handleRemoveFromWishlist(bookId) {
-    try {
-      const response = await axios.delete(
-        "http://localhost:5000/wishlist/delete",
-        {
-          data: {
-            userId: userData.email,
-            bookId: bookId,
-          },
-        }
-      );
-      // Update the wishlistItems state to reflect the changes
-      setWishlistItems((prevItems) =>
-        prevItems.filter((item) => item.bookId !== bookId)
-      );
-      console.log(response.data.message);
-    } catch (error) {
-      console.error("Error removing book from wishlist:", error);
+    var answer = window.confirm("Are you sure you want to delete the book?");
+    if (answer) {
+      try {
+        const response = await axios.delete(
+          "http://localhost:5000/wishlist/delete",
+          {
+            data: {
+              userId: userData.email,
+              bookId: bookId,
+            },
+          }
+        );
+        // Update the wishlistItems state to reflect the changes
+        setWishlistItems((prevItems) =>
+          prevItems.filter((item) => item.bookId !== bookId)
+        );
+        console.log(response.data.message);
+      } catch (error) {
+        console.error("Error removing book from wishlist:", error);
+      }
+      console.log("delete book Id is : ", bookId);
+    } else {
+      //some code
+      console.log("NO");
     }
-    console.log("delete book Id is : ", bookId);
+    // try {
+    //   const response = await axios.delete(
+    //     "http://localhost:5000/wishlist/delete",
+    //     {
+    //       data: {
+    //         userId: userData.email,
+    //         bookId: bookId,
+    //       },
+    //     }
+    //   );
+    //   // Update the wishlistItems state to reflect the changes
+    //   setWishlistItems((prevItems) =>
+    //     prevItems.filter((item) => item.bookId !== bookId)
+    //   );
+    //   console.log(response.data.message);
+    // } catch (error) {
+    //   console.error("Error removing book from wishlist:", error);
+    // }
+    // console.log("delete book Id is : ", bookId);
   }
 
   console.log("wishlistItems : ", wishlistItems);

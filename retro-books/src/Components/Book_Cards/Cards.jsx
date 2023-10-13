@@ -49,6 +49,7 @@ import Heart from "react-animated-heart";
 // import Heart from "./index.tsx";
 import "./Cards.css";
 import axios from "axios";
+import { FaPenToSquare } from "react-icons/fa6";
 
 function Cards(props) {
   const [isClick, setClick] = useState(false);
@@ -142,23 +143,51 @@ function Cards(props) {
             </div>
             <div className="col-4">
               {props.delete ? ( //handleRemoveFromWishlist(props.bookId)
-                <div
-                  className="dustbin"
-                  onClick={() => props.deleteFunction(props.bookId)}
-                >
-                  <div className="icon-trash">
+                <div>
+                  {props.edit ? (
+                    <div>
+                      <div className="edit-button">
+                        <FaPenToSquare />
+                      </div>
+                      <div
+                        className="dustbin"
+                        onClick={() => props.deleteFunction(props.bookId)}
+                      >
+                        <div className="icon-trash">
+                          <div
+                            className="trash-lid"
+                            // style="background-color: #E5E9EA"
+                          ></div>
+                          <div
+                            className="trash-container"
+                            // style="background-color: #E5E9EA"
+                          ></div>
+                          <div className="trash-line-1"></div>
+                          <div className="trash-line-2"></div>
+                          <div className="trash-line-3"></div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
                     <div
-                      className="trash-lid"
-                      // style="background-color: #E5E9EA"
-                    ></div>
-                    <div
-                      className="trash-container"
-                      // style="background-color: #E5E9EA"
-                    ></div>
-                    <div className="trash-line-1"></div>
-                    <div className="trash-line-2"></div>
-                    <div className="trash-line-3"></div>
-                  </div>
+                      className="dustbin no-edit-button"
+                      onClick={() => props.deleteFunction(props.bookId)}
+                    >
+                      <div className="icon-trash">
+                        <div
+                          className="trash-lid"
+                          // style="background-color: #E5E9EA"
+                        ></div>
+                        <div
+                          className="trash-container"
+                          // style="background-color: #E5E9EA"
+                        ></div>
+                        <div className="trash-line-1"></div>
+                        <div className="trash-line-2"></div>
+                        <div className="trash-line-3"></div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="col-4">
