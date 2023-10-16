@@ -3,6 +3,7 @@ import TopbarSeller from "../../Topbar/TopbarSeller";
 import Sidebar from "../../Sidebar/Sidebar";
 import Cards from "../../Book_Cards/Cards";
 import axios from "axios";
+import EditBookModal from "../../EditBooksModal/EditBookModal";
 
 function PostedBooks() {
   const userDataString = localStorage.getItem("user");
@@ -84,10 +85,21 @@ function PostedBooks() {
     console.log("search book : ", bookName);
   };
 
-  const [currentBook, setCurrentBook] = useState("");
+  const [currentBook, setCurrentBook] = useState(null);
   const editBook = (currentBookId) => {
     setCurrentBook(currentBookId);
-  }
+  };
+  console.log("edit book function called for : ", currentBook);
+
+  useEffect(() => {
+    const close = (e) => {
+      if (e.key === "Escape") {
+        setCurrentBook(null);
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
 
   return (
     <div>
@@ -141,6 +153,13 @@ function PostedBooks() {
           </div>
         </div>
       </div>
+      {/* Conditionally render the EditBookModal */}
+      {currentBook !== null && (
+        <EditBookModal
+          bookId={currentBook}
+          onClose={() => setCurrentBook(null)} // Close the modal when needed
+        />
+      )}
     </div>
   );
 }

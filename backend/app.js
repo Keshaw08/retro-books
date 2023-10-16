@@ -220,6 +220,24 @@ app.get("/get-books", async (req, res) => {
   }
 });
 
+// Add this route to your Express app to fetch a single book by ID
+app.get("/books/:id", async (req, res) => {
+  const bookId = req.params.id;
+
+  try {
+    const book = await Book.findById(bookId);
+
+    if (!book) {
+      return res.status(404).json({ error: "Book not found" });
+    }
+
+    res.json(book);
+  } catch (error) {
+    console.error("Error fetching book by ID:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.delete("/seller/:bookId", async (req, res) => {
   try {
     const { bookId } = req.params;
@@ -356,6 +374,27 @@ app.get("/api/get-average-rating", (req, res) => {
       console.error("Error fetching average rating:", error);
       res.status(500).json({ error: "Internal server error" });
     });
+});
+
+app.put("/books/:id", async (req, res) => {
+  const bookId = req.params.id;
+  const updatedBookData = req.body;
+
+  try {
+    // Use Mongoose's findByIdAndUpdate to update the book
+    const updatedBook = await Book.findByIdAndUpdate(bookId, updatedBookData, {
+      new: true,
+    });
+
+    if (!updatedBook) {
+      return res.status(404).json({ error: "Book not found" });
+    }
+
+    res.json(updatedBook);
+  } catch (error) {
+    console.error("Error updating book data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 // free endpoint

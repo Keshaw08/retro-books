@@ -147,7 +147,9 @@ function Cards(props) {
                   {props.edit ? (
                     <div>
                       <div className="edit-button">
-                        <FaPenToSquare />
+                        <FaPenToSquare
+                          onClick={() => props.editFunction(props.bookId)}
+                        />
                       </div>
                       <div
                         className="dustbin"
