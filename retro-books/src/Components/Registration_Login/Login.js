@@ -37,7 +37,7 @@ export default function Login() {
         });
         // redirect user to the auth page
         window.location.href = "/home";
-        localStorage.setItem('user',JSON.stringify({...result.user,email}))
+        localStorage.setItem("user", JSON.stringify({ ...result.user, email }));
         // const userId = result.data.email;
         // const userId = result.data.email;
         // console.log("userId before login:", userId);

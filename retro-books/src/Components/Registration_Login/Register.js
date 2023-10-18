@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Register.css";
 import logo from "../Assets/logo.png";
@@ -8,6 +9,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
@@ -26,6 +28,7 @@ export default function Register() {
     axios(configuration)
       .then((result) => {
         setRegister(true);
+        navigate("/login");
       })
       .catch((error) => {
         error = new Error();
@@ -48,13 +51,13 @@ export default function Register() {
               </span>
             </div> */}
             <div className="form-group mt-3">
-              <label>Email address</label>
+              <label>Full Name</label>
               <input
                 type="name"
                 className="form-control mt-1"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Enter Full Name"
+                placeholder="Enter full name"
               />
             </div>
             <div className="form-group mt-3">
