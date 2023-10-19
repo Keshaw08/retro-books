@@ -2,3 +2,12 @@
   padding: 3%;
   /* background-color: yellow; */
 }
+
+.modal-footer .btn-primary{
+  background-color: rgb(2, 140, 2);
+  border: 2px solid rgb(2, 140, 2);
+}
+
+.modal-footer .btn-primary:hover{
+  background-color: rgb(40, 149, 40);
+}
