@@ -48,12 +48,37 @@ export default function FirstPage() {
   //   console.log("User Email:", userData.email);
   // }
   console.log(books);
+
+  // const [filteredBooks, setFilteredBooks] = useState("");
+
+  const onFilterChange = (filterCriteria) => {
+    const { minPrice, maxPrice } = filterCriteria;
+
+    // Apply the price filter to the book data
+    const filteredBooks = books.filter((book) => {
+      const bookPrice = parseFloat(book.price);
+      if (
+        (minPrice === "" || bookPrice >= minPrice) &&
+        (maxPrice === "" || bookPrice <= maxPrice)
+      ) {
+        return true;
+      }
+      return false;
+    });
+
+    // Update the filtered books state
+    // setFilteredBooks(filteredBooks);
+    setBooks(filteredBooks)
+  };
+
+  // console.log("filtered books are : ",filteredBooks);
+
   return (
     <div>
       <Topbar searchFunction={searchBookById} />
       <div className="row">
         <div className="col-lg-1 col-md-1 col-sm-1">
-          <Sidebar />
+          <Sidebar onFilterChange={onFilterChange}/>
         </div>
         <div className="col-lg-11 col-md-11 col-sm-11">
           <div className="cards-section">

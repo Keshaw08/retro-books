@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SideNav, {
   Toggle,
   Nav,
@@ -10,7 +10,24 @@ import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import "./Sidebar.css";
 import t from "../Assets/t.png";
 
-function Sidebar() {
+function Sidebar({ onFilterChange }) {
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
+  const handleMinPriceChange = (event) => {
+    setMinPrice(event.target.value);
+  };
+
+  const handleMaxPriceChange = (event) => {
+    setMaxPrice(event.target.value);
+  };
+
+  const applyPriceFilter = () => {
+    onFilterChange({
+      minPrice: parseFloat(minPrice),
+      maxPrice: parseFloat(maxPrice),
+    });
+  };
   return (
     <div>
       <SideNav
@@ -31,6 +48,27 @@ function Sidebar() {
               <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
             </NavIcon>
             <NavText className="side-nav-text">Wishlist</NavText>
+          </NavItem>
+          <NavItem eventKey="home">
+            <NavIcon>
+              <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
+            </NavIcon>
+            <NavText className="side-nav-text">Price Filter</NavText>
+            {/* <div className="price-filter-inputs">
+              <input
+                type="number"
+                placeholder="Min Price"
+                value={minPrice}
+                onChange={handleMinPriceChange}
+              />
+              <input
+                type="number"
+                placeholder="Max Price"
+                value={maxPrice}
+                onChange={handleMaxPriceChange}
+              />
+              <button onClick={applyPriceFilter}>Apply</button>
+            </div> */}
           </NavItem>
           {/* <NavItem eventKey="charts">
             <NavIcon>

@@ -85,6 +85,27 @@ function BookModal(props) {
   const [email, setEmail] = useState("");
   const [review, setReview] = useState("");
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch("http://localhost:5000/reviews", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ reviewBookId, email, review }),
+  //   });
+
+  //   if (response.status === 200) {
+  //     // Review submitted successfully
+  //     console.log("Review submitted!");
+  //     setEmail("");
+  //     setReview("");
+  //   } else {
+  //     // Handle errors here
+  //     console.error("Error submitting review");
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5000/reviews", {
@@ -94,15 +115,23 @@ function BookModal(props) {
       },
       body: JSON.stringify({ reviewBookId, email, review }),
     });
-
+  
     if (response.status === 200) {
       // Review submitted successfully
       console.log("Review submitted!");
+  
+      // Update the reviews state with the newly posted review
+      const newReview = { email, review };
+      setReviews([...reviews, newReview]);
+  
+      setEmail("");
+      setReview("");
     } else {
       // Handle errors here
       console.error("Error submitting review");
     }
   };
+  
 
   const [reviews, setReviews] = useState([]);
 
