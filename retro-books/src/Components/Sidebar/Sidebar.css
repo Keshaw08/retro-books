@@ -1,106 +1,3 @@
-.sidenav---sidenav---_2tBP {
-  /* background-color: #bfafef; */
-  background-color: transparent;
-  padding-top: 4%;
-  height: 60rem;
-}
-
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-.sidenav---highlighted---oUx9u
-  > .sidenav---navitem---9uL5T::after,
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-:hover.sidenav---highlighted---oUx9u
-  > .sidenav---navitem---9uL5T
-  > .sidenav---sidenav-toggle---1KRjR::after {
-  /* background: #000; */
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
-}
-
-@media screen and (max-width: 600px) {
-  .sidenav---sidenav---_2tBP {
-    padding-top: 8%;
-    background-color: transparent;
-  }
-}
-
-.sidenav---sidenav-toggle---1KRjR .sidenav---icon-bar---u1f02 {
-  display: block;
-  width: 25px;
-  height: 0.15rem;
-  margin: 0 auto;
-  background-color: #44207a;
-  border-radius: 1px;
-  transition: all 0.15s;
-  /* opacity: 0.7;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-    filter: alpha(opacity=70); */
-}
-
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-:hover
-  > .sidenav---navitem---9uL5T
-  .sidenav---navicon---3gCRo,
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-:hover
-  > .sidenav---navitem---9uL5T
-  .sidenav---navtext---1AE_f,
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-.sidenav---highlighted---oUx9u
-  > .sidenav---navitem---9uL5T
-  .sidenav---navicon---3gCRo,
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-.sidenav---highlighted---oUx9u
-  > .sidenav---navitem---9uL5T
-  .sidenav---navtext---1AE_f {
-  color: #44207a;
-}
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-
-  > .sidenav---navitem---9uL5T
-  .sidenav---navicon---3gCRo,
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-
-  > .sidenav---navitem---9uL5T
-  .sidenav---navtext---1AE_f {
-  color: #44207a;
-}
-
-.sidenav---sidenav-toggle---1KRjR {
-  /* background-color: #bfafef; */
-  background-color: transparent;
-}
-
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-.sidenav---highlighted---oUx9u
-  > .sidenav---navitem---9uL5T::after,
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-:hover.sidenav---highlighted---oUx9u
-  > .sidenav---navitem---9uL5T::after {
-  background: #32174d;
-  /* opacity: 0.2; */
-  font-size: 4rem;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=10);
-}
-
-.sidenav---sidenav-nav---3tvij
-  > .sidenav---sidenav-navitem---uwIJ-
-  > .sidenav---navitem---9uL5T::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  background: #32174d;
-  opacity: 0;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  /* z-index: -1; */
-}
-
 @media screen and (max-width: 600px) {
   .side-div-line {
     margin: 1.2%;
@@ -131,7 +28,7 @@
   font-family: inherit;
   width: 190%;
   border: 0;
-  border-bottom: 2px solid #9b9b9b;
+  border-bottom: 2px solid #32174d;
   outline: 0;
   font-size: 1.3rem;
   padding: 7px 0;
@@ -153,14 +50,14 @@
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #9b9b9b;
+  color: #9370db;
 }
 
 .form__field:focus {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image: linear-gradient(to right, #32174d, #9370db);
   border-image-slice: 1;
 }
 .form__field:focus ~ .form__label {
@@ -169,7 +66,7 @@
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #11998e;
+  color: #32174d;
   font-weight: 700;
 }
 
@@ -194,4 +91,25 @@
 
 .apply-clear-button {
   padding-left: 60%;
+}
+
+.offcanvas-body {
+  background-color: #bfafef;
+  color: #44207a;
+}
+
+.offcanvas-header {
+  background-color: #9370db;
+  color: #32174d;
+}
+
+.btn-outline-info {
+  border-color: #32174d;
+  color: #32174d;
+}
+
+.btn-outline-info:hover {
+  border-color: #32174d;
+  background-color: #9370db;
+  color: #32174d;
 }

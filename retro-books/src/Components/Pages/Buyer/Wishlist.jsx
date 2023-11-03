@@ -205,6 +205,11 @@ function Wishlist() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchedBook, setSearchedBook] = useState(null);
+  const [filterCriteria, setFilterCriteria] = useState({
+    minPrice: "",
+    maxPrice: "",
+    language: "",
+  });
 
   useEffect(() => {
     async function fetchWishlistItems() {
@@ -221,34 +226,34 @@ function Wishlist() {
     fetchWishlistItems();
   }, []); // This should only run once when the component mounts
 
-  useEffect(() => {
-    async function fetchBooksData() {
-      try {
-        const response = await axios.get("http://localhost:5000/get-books");
-        const allBooks = response.data;
-        console.log("Got books : ", allBooks);
+  async function fetchBooksData() {
+    try {
+      const response = await axios.get("http://localhost:5000/get-books");
+      const allBooks = response.data;
+      console.log("Got books : ", allBooks);
 
-        // Filter wishlist items for the current user
-        const filteredBooks = wishlistItems.filter(
-          (item) => item.userId === userData.email
-        );
+      // Filter wishlist items for the current user
+      const filteredBooks = wishlistItems.filter(
+        (item) => item.userId === userData.email
+      );
 
-        // Use filter to select books whose IDs are in filteredBooks
-        const selectedBooksData = allBooks.filter((book) =>
-          filteredBooks.some(
-            (wishlistItem) =>
-              wishlistItem.bookId.toString() === book._id.toString()
-          )
-        );
+      // Use filter to select books whose IDs are in filteredBooks
+      const selectedBooksData = allBooks.filter((book) =>
+        filteredBooks.some(
+          (wishlistItem) =>
+            wishlistItem.bookId.toString() === book._id.toString()
+        )
+      );
 
-        setBooksData(selectedBooksData);
-        setLoading(false); // Set loading to false when data is loaded
-      } catch (error) {
-        setError(error);
-      }
+      setBooksData(selectedBooksData);
+      setLoading(false); // Set loading to false when data is loaded
+    } catch (error) {
+      setError(error);
     }
+  }
 
-    // Fetch books data when `wishlistItems` changes
+  useEffect(() => {
+    // Fetch books data when `wishlistItems` or `userData` changes
     if (wishlistItems.length > 0) {
       fetchBooksData();
     }
@@ -327,12 +332,72 @@ function Wishlist() {
     console.log("search book : ", bookName);
   };
 
+  const onFilterChange = (filterCriteria) => {
+    const { minPrice, maxPrice, language } = filterCriteria;
+    const filteredBooks = filterBooks(booksData, filterCriteria);
+    console.log("Filter criteria:", filterCriteria);
+    setBooksData(filteredBooks);
+    setFilterCriteria(filterCriteria);
+  };
+
+  const onClearFilters = () => {
+    setFilterCriteria({
+      minPrice: "",
+      maxPrice: "",
+      language: "",
+      location: "",
+    });
+    fetchBooksData();
+  };
+
+  const filterBooks = (books, filterCriteria) => {
+    const { minPrice, maxPrice, language } = filterCriteria;
+
+    // Case 3: Both price and language filters are provided
+    if (minPrice !== "" && maxPrice !== "" && language !== "") {
+      return books.filter((book) => {
+        const bookPrice = parseFloat(book.price);
+        const isPriceValid = bookPrice >= minPrice && bookPrice <= maxPrice;
+        const isLanguageValid =
+          book.language.toLowerCase() === language.toLowerCase();
+        return isPriceValid && isLanguageValid;
+      });
+    }
+    // Case 1: Only price filter is provided
+    if (minPrice !== "" && maxPrice !== "" && language === "") {
+      return books.filter((book) => {
+        const bookPrice = parseFloat(book.price);
+        return bookPrice >= minPrice && bookPrice <= maxPrice;
+      });
+    }
+
+    console.log("Selected language:", language);
+
+    if (minPrice === "" && maxPrice === "" && language !== "") {
+      const filteredBooks = books.filter((book) => {
+        const isLanguageValid =
+          book.language.toLowerCase() === language.toLowerCase();
+        return isLanguageValid;
+      });
+
+      console.log("Filtered books by language:", filteredBooks);
+      return filteredBooks;
+    }
+
+    // Case 4: No filters are provided, return all books
+    return books;
+  };
+
   return (
     <div>
       <Topbar searchFunction={searchBookById} />
       <div className="row">
         <div className="col-lg-1 col-md-1 col-sm-1">
-          <Sidebar />
+          <Sidebar
+            onFilterChange={onFilterChange}
+            onClearFilters={onClearFilters}
+            filterCriteria={filterCriteria}
+          />
         </div>
         <div className="col-lg-11 col-md-11 col-sm-11">
           <div className="cards-section">
