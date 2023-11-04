@@ -62,6 +62,7 @@ import React, { useState, useEffect } from "react";
 import "./BookModal.css";
 import BookReview from "../BooksReview/BookReview";
 import { FaStar } from "react-icons/fa";
+import OfferModal from "./OfferModal/OfferModal";
 
 function BookModal(props) {
   const {
@@ -115,15 +116,15 @@ function BookModal(props) {
       },
       body: JSON.stringify({ reviewBookId, email, review }),
     });
-  
+
     if (response.status === 200) {
       // Review submitted successfully
       console.log("Review submitted!");
-  
+
       // Update the reviews state with the newly posted review
       const newReview = { email, review };
       setReviews([...reviews, newReview]);
-  
+
       setEmail("");
       setReview("");
     } else {
@@ -131,7 +132,6 @@ function BookModal(props) {
       console.error("Error submitting review");
     }
   };
-  
 
   const [reviews, setReviews] = useState([]);
 
@@ -218,6 +218,27 @@ function BookModal(props) {
         console.error("Error fetching average rating:", error);
       });
   }, [bookId]);
+
+  const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
+
+  const openOfferModal = () => {
+    setIsOfferModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeOfferModal = () => {
+    setIsOfferModalOpen(false);
+  };
+
+  useEffect(() => {
+    const close = (e) => {
+      if (e.key === "Escape") {
+        closeOfferModal();
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
 
   return (
     <div>
@@ -357,6 +378,13 @@ function BookModal(props) {
               <button
                 type="button"
                 className="btn btn-secondary"
+                onClick={openOfferModal}
+              >
+                Offer
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
                 onClick={closeModal}
               >
@@ -366,6 +394,13 @@ function BookModal(props) {
           </div>
         </div>
       </div>
+      <OfferModal
+        isOfferModalOpen={isOfferModalOpen}
+        closeOfferModal={closeOfferModal}
+        title={title}
+        bookId={bookId}
+        posted_by={posted_by}
+      />
     </div>
   );
 }

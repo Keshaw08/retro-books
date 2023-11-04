@@ -15,6 +15,7 @@ const auth = require("./auth");
 const WishlistItem = require("./db/wishlistModal");
 const Review = require("./db/reviewModal");
 const Rating = require("./db/ratingSchema");
+const Offer = require("./db/offerSchema");
 
 // execute database connection
 dbConnect();
@@ -395,6 +396,26 @@ app.put("/books/:id", async (req, res) => {
     console.error("Error updating book data:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+app.post("/api/create-offer", (req, res) => {
+  const { offerPrice, sender, posted_by, bookId } = req.body;
+
+  const offer = new Offer({
+    offerPrice,
+    sender,
+    posted_by,
+    bookId,
+  });
+
+  offer.save((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "Error creating offer." });
+    } else {
+      res.status(201).json({ message: "Offer created successfully." });
+    }
+  });
 });
 
 // free endpoint

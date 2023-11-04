@@ -1,0 +1,15 @@
+.send-details {
+  padding: 5%;
+  color: #32174d;
+  padding-bottom: 3%;
+}
+
+.offer-amount-div {
+  padding: 5%;
+  padding-top: 0;
+  display: flex;
+}
+
+.offer-amount-div input {
+  margin-left: 4%;
+}
