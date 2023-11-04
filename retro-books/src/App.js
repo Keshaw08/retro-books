@@ -8,6 +8,8 @@ import FirstPage from "./Components/Pages/Buyer/FirstPage";
 import Wishlist from "./Components/Pages/Buyer/Wishlist";
 import PostBooks from "./Components/Pages/Seller/PostBooks";
 import PostedBooks from "./Components/Pages/Seller/PostedBooks";
+import SellerMessages from "./Components/Pages/Seller/SellerMessages";
+import BuyerMessages from "./Components/Pages/Buyer/BuyerMessages";
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
         path="/home"
         element={
           <ProtectedRoutes>
-              <FirstPage />
+            <FirstPage />
           </ProtectedRoutes>
         }
       />
@@ -44,6 +46,22 @@ function App() {
         element={
           <ProtectedRoutes>
             <PostedBooks />
+          </ProtectedRoutes>
+        }
+      />
+      <Route
+        path="/seller-messages"
+        element={
+          <ProtectedRoutes>
+            <SellerMessages />
+          </ProtectedRoutes>
+        }
+      />
+      <Route
+        path="/buyer-messages"
+        element={
+          <ProtectedRoutes>
+            <BuyerMessages />
           </ProtectedRoutes>
         }
       />

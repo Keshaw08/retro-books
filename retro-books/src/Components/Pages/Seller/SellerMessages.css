@@ -1,0 +1,45 @@
+.showing-messages {
+  padding: 3%;
+}
+
+.action-buttons {
+  margin-top: 5.6%;
+  align-content: flex-end;
+  padding-left: 8%;
+}
+
+.action-buttons .btn-outline-success {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.action-buttons .btn-outline-danger {
+  margin-left: 5%;
+  /* margin-right: 4%; */
+}
+
+@media screen and (max-width: 600px) {
+  .action-buttons {
+    padding-left: 0;
+    margin-top: 4%;
+  }
+
+  .action-buttons .btn-outline-success {
+    margin-left: 3%;
+    margin-right: 5%;
+  }
+
+  .action-buttons .btn-outline-danger {
+    margin-left: 5%;
+    /* margin-right: 4%; */
+    margin-top: 0;
+  }
+}
+
+.alert-secondary h5 {
+  color: #32174d;
+}
+
+.alert-secondary h6 {
+  color: #32174d;
+}

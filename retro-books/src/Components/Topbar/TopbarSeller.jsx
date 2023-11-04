@@ -17,6 +17,10 @@ function TopbarSeller(props) {
   const navigateToPostedBooks = () => {
     navigate("/postedbooks");
   };
+
+  const navigateToSellerMessages = () => {
+    navigate("/seller-messages");
+  };
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     e.preventDefault();
@@ -61,6 +65,11 @@ function TopbarSeller(props) {
             <li className="nav-item">
               <a className="nav-link anchor" onClick={navigateToPostedBooks}>
                 Posted Books
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link anchor" onClick={navigateToSellerMessages}>
+                Messages
               </a>
             </li>
             <li className="nav-item">

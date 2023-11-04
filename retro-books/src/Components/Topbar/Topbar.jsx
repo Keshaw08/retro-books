@@ -18,6 +18,10 @@ function Topbar(props) {
     navigate("/seller");
   };
 
+  const navigateToBuyerMessages = () => {
+    navigate("/buyer-messages");
+  };
+
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     e.preventDefault();
@@ -62,6 +66,11 @@ function Topbar(props) {
             <li className="nav-item">
               <a className="nav-link anchor" onClick={navigateToWishlist}>
                 Wishlist
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link anchor" onClick={navigateToBuyerMessages}>
+                Messages
               </a>
             </li>
             <li className="nav-item">

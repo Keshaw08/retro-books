@@ -418,6 +418,20 @@ app.post("/api/create-offer", (req, res) => {
   });
 });
 
+app.get("/api/offers", (req, res) => {
+  const currentUserEmail = req.query.email; // Get the email parameter from the query string
+
+  // Retrieve all offers where 'posted_by' matches the current user's email
+  Offer.find({ posted_by: currentUserEmail }, (err, offers) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "Error fetching offers." });
+    } else {
+      res.status(200).json(offers);
+    }
+  });
+});
+
 // free endpoint
 app.get("/free-endpoint", (request, response) => {
   response.json({ message: "You are free to access me anytime" });
