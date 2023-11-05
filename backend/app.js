@@ -453,6 +453,22 @@ app.post("/api/seller-response", async (req, res) => {
   }
 });
 
+// Define the route for fetching seller responses by email
+app.get("/seller-responses", async (req, res) => {
+  try {
+    // Get the email of the currently logged-in user from the query parameters
+    const { email } = req.query;
+
+    // Fetch seller responses with matching sender and email
+    const sellerResponses = await SellerResponse.find({ sender: email });
+
+    res.json(sellerResponses);
+  } catch (error) {
+    console.error("Error fetching seller responses:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // free endpoint
 app.get("/free-endpoint", (request, response) => {
   response.json({ message: "You are free to access me anytime" });
