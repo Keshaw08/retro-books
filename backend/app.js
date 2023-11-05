@@ -16,6 +16,7 @@ const WishlistItem = require("./db/wishlistModal");
 const Review = require("./db/reviewModal");
 const Rating = require("./db/ratingSchema");
 const Offer = require("./db/offerSchema");
+const SellerResponse = require("./db/sellerResponseSchema");
 
 // execute database connection
 dbConnect();
@@ -253,8 +254,6 @@ app.delete("/seller/:bookId", async (req, res) => {
   }
 });
 
-// Add a book to the user's wishlist
-// Add a book to the user's wishlist
 app.post("/wishlist/add", async (req, res) => {
   try {
     const { userId, bookId } = req.body;
@@ -430,6 +429,28 @@ app.get("/api/offers", (req, res) => {
       res.status(200).json(offers);
     }
   });
+});
+
+app.post("/api/seller-response", async (req, res) => {
+  const { answer, bookId, sender, posted_by, offerPrice } = req.body;
+
+  try {
+    // Save the response to the "sellerResponse" collection
+    const response = new SellerResponse({
+      answer,
+      bookId,
+      sender,
+      posted_by,
+      offerPrice,
+    });
+
+    await response.save();
+
+    res.status(201).json({ message: "Response saved successfully" });
+  } catch (error) {
+    console.error("Error saving seller response:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 // free endpoint

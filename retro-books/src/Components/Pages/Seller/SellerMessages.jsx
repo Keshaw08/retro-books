@@ -44,6 +44,34 @@ function SellerMessages() {
     });
   };
 
+  // Function to handle the seller's response
+  const handleResponse = (offer, answer) => {
+    const { bookId, sender, posted_by, offerPrice } = offer;
+
+    // Send the response to the server
+    fetch("http://localhost:5000/api/seller-response", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        answer,
+        bookId,
+        sender,
+        posted_by,
+        offerPrice,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Response sent successfully:", data);
+        // Optionally, you can update the UI to reflect the response.
+      })
+      .catch((error) => {
+        console.error("Error sending response:", error);
+      });
+  };
+
   return (
     <div>
       <TopbarSeller />
@@ -59,10 +87,18 @@ function SellerMessages() {
                 <h6>Offer given by: {offer.sender}</h6>
               </div>
               <div className="row-lg-3 col-md-3 col-sm-12 action-buttons">
-                <button type="button" className="btn btn-outline-success">
+                <button
+                  type="button"
+                  className="btn btn-outline-success"
+                  onClick={() => handleResponse(offer, true)}
+                >
                   Accept Offer
                 </button>
-                <button type="button" className="btn btn-outline-danger">
+                <button
+                  type="button"
+                  className="btn btn-outline-danger"
+                  onClick={() => handleResponse(offer, false)}
+                >
                   Reject
                 </button>
               </div>
