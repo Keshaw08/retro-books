@@ -1,3 +1,23 @@
 .showing-messages {
-    padding: 3%;
-  }
+  padding: 3%;
+  color: #32174d;
+}
+
+.btn-outline-secondary {
+  margin-left: 40%;
+}
+
+.alert-secondary p {
+  color: #32174d;
+}
+
+.btn-outline-secondary {
+  border-color: #32174d;
+  color: #32174d;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #bfafef;
+  color: #32174d;
+  border-color: #32174d;
+}

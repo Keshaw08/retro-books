@@ -43,6 +43,13 @@ function BuyerMessages() {
     });
   };
 
+  // Function to open Gmail with the recipient's email pre-filled
+  const contactSeller = (email) => {
+    const subject = "Regarding the Book Sale"; // You can customize the subject
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}`;
+    window.open(gmailLink);
+  };
+
   return (
     <div>
       <Topbar />
@@ -60,22 +67,31 @@ function BuyerMessages() {
                     <h5>Book Title: {bookDetails[response.bookId]?.title}</h5>
                     <br />
                     <h6>Accepted offer price: {response.offerPrice}</h6>
-                    <h6>Sender: {response.sender}</h6>
-                    "Seller has accepted your offer price. Contact them."
+                    <h6>Sender: {response.posted_by}</h6>
+                    <p>
+                      <strong>𝓒𝓸𝓷𝓰𝓻𝓪𝓽𝓾𝓵𝓪𝓽𝓲𝓸𝓷𝓼 !!</strong> Seller has accepted
+                      your offer price. Contact them.
+                    </p>
                   </div>
                 ) : (
                   <div>
                     <h5>Book Title: {bookDetails[response.bookId]?.title}</h5>
                     <br />
                     <h6>Rejected offer price: {response.offerPrice}</h6>
-                    <h6>Sender: {response.sender}</h6>
-                    "Seller has rejected your offer price. Give them a better
-                    price."
+                    <h6>Sender: {response.posted_by}</h6>
+                    <p>
+                      <strong>Sorry,</strong> Seller has rejected your offer
+                      price. Give them a better price.
+                    </p>
                   </div>
                 )}
               </div>
               <div className="row-lg-3 col-md-3 col-sm-12 action-buttons">
-                <button type="button" class="btn btn-outline-secondary">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  onClick={() => contactSeller(response.posted_by)}
+                >
                   Contact Seller
                 </button>
               </div>
