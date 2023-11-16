@@ -469,6 +469,24 @@ app.get("/seller-responses", async (req, res) => {
   }
 });
 
+// Endpoint to fetch the name of the currently logged-in user
+app.get("/api/current-user", async (req, res) => {
+  const userEmail = req.query.email;
+
+  try {
+    const user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json({ name: user.name });
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // free endpoint
 app.get("/free-endpoint", (request, response) => {
   response.json({ message: "You are free to access me anytime" });
