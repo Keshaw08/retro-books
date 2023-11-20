@@ -212,8 +212,8 @@ function BuyerMessages() {
 
         - Title: ${bookDetails.title}
         - Author: ${bookDetails.author}
-        - Price: $${bookDetails.price}
-        - My Offer Price: $${offerPrice}
+        - Price: ₹${bookDetails.price}
+        - My Offer Price: ₹${offerPrice}
 
         Could you please provide the bank details for the transaction?
 
@@ -249,8 +249,8 @@ function BuyerMessages() {
 
         - Title: ${bookDetails.title}
         - Author: ${bookDetails.author}
-        - Price: $${bookDetails.price}
-        - My Offer Price: $${offerPrice}
+        - Price: ₹${bookDetails.price}
+        - My Offer Price: ₹${offerPrice}
 
         Looking forward to your response.
 
@@ -289,7 +289,7 @@ function BuyerMessages() {
                   <div>
                     <h5>Book Title: {bookDetails[response.bookId]?.title}</h5>
                     <br />
-                    <h6>Accepted offer price: ${response.offerPrice}</h6>
+                    <h6>Accepted offer price: ₹{response.offerPrice}</h6>
                     <h6>Sender: {response.posted_by}</h6>
                     <p>
                       <strong>𝓒𝓸𝓷𝓰𝓻𝓪𝓽𝓾𝓵𝓪𝓽𝓲𝓸𝓷𝓼 !!</strong> Seller has accepted
@@ -300,7 +300,7 @@ function BuyerMessages() {
                   <div>
                     <h5>Book Title: {bookDetails[response.bookId]?.title}</h5>
                     <br />
-                    <h6>Rejected offer price: ${response.offerPrice}</h6>
+                    <h6>Rejected offer price: ₹{response.offerPrice}</h6>
                     <h6>Sender: {response.posted_by}</h6>
                     <p>
                       <strong>Sorry,</strong> Seller has rejected your offer

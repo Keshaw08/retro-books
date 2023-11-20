@@ -82,8 +82,8 @@ function SellerMessages() {
               <div className="row-lg-9 col-md-9 col-sm-12">
                 <h5>Book Title: {bookDetails[offer.bookId]?.title}</h5>
                 <br />
-                <h6>Sell Price : {bookDetails[offer.bookId]?.price}</h6>
-                <h6>Offer Price: {offer.offerPrice}</h6>
+                <h6>Sell Price : ₹{bookDetails[offer.bookId]?.price}</h6>
+                <h6>Offer Price: ₹{offer.offerPrice}</h6>
                 <h6>Offer given by: {offer.sender}</h6>
               </div>
               <div className="row-lg-3 col-md-3 col-sm-12 action-buttons">

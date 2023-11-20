@@ -139,7 +139,7 @@ function Cards(props) {
               <h6 className="card-subtitle mb-2">
                 Language - {props.language}
               </h6>
-              <h6 className="card-subtitle mb-2">Price - ₹ {props.price}</h6>
+              <h6 className="card-subtitle mb-2">Price - ₹{props.price}</h6>
             </div>
             <div className="col-4">
               {props.delete ? ( //handleRemoveFromWishlist(props.bookId)

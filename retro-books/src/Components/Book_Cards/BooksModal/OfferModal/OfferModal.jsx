@@ -79,7 +79,7 @@ function OfferModal(props) {
               <div className="offer-amount-div">
                 <div class="input-group mb-3">
                   <span class="input-group-text" id="inputGroup-sizing-default">
-                    Enter Offer Price
+                    Enter Offer Price (₹)
                   </span>
                   <input
                     type="number"
