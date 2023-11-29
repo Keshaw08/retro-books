@@ -9,9 +9,9 @@ function SearchBar({ onSearch }) {
     };
   
     const handleSubmit = (e) => {
-      e.preventDefault(); // Prevent the default form submission behavior
+      e.preventDefault();
       console.log("form submitted");
-      onSearch(searchQuery); // Trigger the search callback
+      onSearch(searchQuery);
     };
 
   return (

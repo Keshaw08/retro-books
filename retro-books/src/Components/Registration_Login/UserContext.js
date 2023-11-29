@@ -10,17 +10,13 @@ export function UserProvider({ children }) {
   const [userId, setUserId] = useState(null);
 
   const login = (userId) => {
-    console.log("User logged in with ID:", userId); // Add this line
+    console.log("User logged in with ID:", userId);
 
     setUserId(userId);
   };
-
-  // const logout = () => {
-  //   setUserId(null);
-  // };
   console.log("Current userId:", userId);
   return (
-    <UserContext.Provider value={{ userId, login}}>
+    <UserContext.Provider value={{ userId, login }}>
       {children}
     </UserContext.Provider>
   );

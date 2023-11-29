@@ -35,21 +35,6 @@
 .rest-nav {
   padding: 2%;
 }
-/* .rest-nav button {
-  font-size: 1rem;
-  font-weight: 500;
-  background-color: #330656;
-  color: #fff;
-  border: 0;
-} */
-/* @media screen and (max-width: 600px) {
-  .rest-nav button {
-    font-size: 0.5rem;
-    font-weight: 500;
-    background-color: #44207a;
-    color: #fff;
-  }
-} */
 
 .title-cover-photo {
   height: 100%;
@@ -87,12 +72,11 @@
   .title-cover-photo {
     padding-bottom: 20%;
   }
-  .title-cover-photo{
+  .title-cover-photo {
     height: 110%;
     width: 100%;
   }
 }
-
 
 /* CSS */
 .button-74 {
@@ -131,7 +115,7 @@
   }
 }
 
-.button-signup{
+.button-signup {
   margin-left: 2%;
 }
 
@@ -142,18 +126,19 @@
   background-color: #fff;
   border-radius: 24px;
   border-style: none;
-  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
   box-sizing: border-box;
   color: #3c4043;
   cursor: pointer;
   display: inline-flex;
   fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 48px;
   justify-content: center;
-  letter-spacing: .25px;
+  letter-spacing: 0.25px;
   line-height: normal;
   max-width: 100%;
   overflow: visible;
@@ -161,29 +146,28 @@
   position: relative;
   text-align: center;
   text-transform: none;
-  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 15ms linear 30ms, transform 270ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   width: auto;
-  will-change: transform,opacity;
+  will-change: transform, opacity;
   z-index: 0;
 }
 
 .button-17:hover {
-  background: #F6F9FE;
+  background: #f6f9fe;
   color: #44207a;
 }
 
-.buy-books-section{
+.buy-books-section {
   background-color: #bfafef;
-  /* background-color: #fff; */
   height: 100%;
   width: 100%;
-  /* padding-bottom: 4%; */
 }
 
-.buy-books-section-photo{
+.buy-books-section-photo {
   height: 100%;
   width: 80%;
 }
@@ -211,24 +195,20 @@
   .buy-books-section {
     padding-bottom: 20%;
   }
-  .buy-books-section-photo{
+  .buy-books-section-photo {
     height: 120%;
     width: 110%;
   }
-  
 }
 
-/* Sell Books Section */
-
-.sell-books-section{
+.sell-books-section {
   background-color: #44207a;
   /* background-color: #fff; */
   height: 100%;
   width: 100%;
-  /* padding-bottom: 4%; */
 }
 
-.sell-books-section-photo{
+.sell-books-section-photo {
   height: 100%;
   width: 80%;
 }

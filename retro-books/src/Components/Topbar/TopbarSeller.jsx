@@ -26,7 +26,6 @@ function TopbarSeller(props) {
     e.preventDefault();
     const searchValue = e.target.elements.search.value;
     props.searchFunction(searchValue);
-    // console.log("Search value: ", searchValue);
   };
   return (
     <nav className="navbar navbar-expand-lg">

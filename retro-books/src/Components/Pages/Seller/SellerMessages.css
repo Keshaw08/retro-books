@@ -15,7 +15,6 @@
 
 .action-buttons .btn-outline-danger {
   margin-left: 5%;
-  /* margin-right: 4%; */
 }
 
 @media screen and (max-width: 600px) {
@@ -31,7 +30,6 @@
 
   .action-buttons .btn-outline-danger {
     margin-left: 5%;
-    /* margin-right: 4%; */
     margin-top: 0;
   }
 }

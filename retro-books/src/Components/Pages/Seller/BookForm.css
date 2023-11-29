@@ -1,7 +1,6 @@
 .book-form-container {
   margin: 2%;
   padding: 2%;
-  /* background-color: #6C3082; better*/
   background-color: #9966cc;
   border-radius: 2rem;
   color: white;
@@ -18,13 +17,11 @@
 }
 
 .submit-post-book {
-  /* background-color: red; */
   display: flex;
   justify-content: flex-end;
   padding-right: 2%;
 }
 
-/* CSS */
 .button-74 {
   background-color: #bfafef;
   border: 2px solid #44207a;

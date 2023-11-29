@@ -1,7 +1,6 @@
-// bookService.js
 const fetchBooks = async () => {
     try {
-      const response = await fetch('get-books'); // Assuming your API endpoint is '/api/books'
+      const response = await fetch('get-books');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

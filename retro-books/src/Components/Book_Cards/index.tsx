@@ -3,7 +3,6 @@ import { createElement } from "react";
 import { setup, styled } from "goober";
 declare var require: any
 
-// import * as img from "../Assets/heart.png";
 const img =  require("../Assets/heart.png");
 
 setup(createElement);

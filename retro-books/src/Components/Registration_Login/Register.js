@@ -12,9 +12,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    // prevent the form from refreshing the whole page
     e.preventDefault();
-    // set configurations
     const configuration = {
       method: "post",
       url: "http://localhost:5000/register",
@@ -24,7 +22,6 @@ export default function Register() {
         password,
       },
     };
-    // make the API call
     axios(configuration)
       .then((result) => {
         setRegister(true);
@@ -44,14 +41,8 @@ export default function Register() {
               <img src={logo} className="img-fluid" alt="..." />
             </div>
             <h3 className="Auth-form-title">Sign Up</h3>
-            {/* <div className="text-center">
-              Already registered ?{" "}
-              <span className="link-primary">
-                <a className= "link" href="/login">Sign In</a>
-              </span>
-            </div> */}
             <div className="form-group mt-3">
-              <label>Full Name</label>
+              <label>Name</label>
               <input
                 type="name"
                 className="form-control mt-1"
@@ -61,7 +52,7 @@ export default function Register() {
               />
             </div>
             <div className="form-group mt-3">
-              <label>Email address</label>
+              <label>Email</label>
               <input
                 type="email"
                 className="form-control mt-1"

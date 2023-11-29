@@ -1,5 +1,5 @@
 import React from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import logo from "./Assets/logo.png";
 import pic2 from "./Assets/pic2.png";
 import pic1 from "./Assets/pic1.png";
@@ -10,17 +10,16 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   const navigateToLogin = () => {
-    // 👇️ navigate to /login
-    navigate('/login');
+    navigate("/login");
   };
 
   const navigateToRegister = () => {
-    navigate('/register')
-  }
+    navigate("/register");
+  };
 
   const navigateToHome = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -44,35 +43,57 @@ export default function LandingPage() {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <div className="rest-nav">
-              {/* <button type="button" className="btn btn-outline-light">
+              <button
+                className="button-17"
+                role="button"
+                onClick={navigateToLogin}
+              >
                 Log In
-              </button> */}
-              <button className="button-17" role="button" onClick={navigateToLogin}>Log In</button>
+              </button>
             </div>
             <div className="rest-nav">
-              {/* <button type="button" className="btn btn-outline-secondary">
+              <button
+                className="button-17"
+                role="button"
+                onClick={navigateToRegister}
+              >
                 Sign Up
-              </button> */}
-              <button className="button-17" role="button" onClick={navigateToRegister}>Sign Up</button>
+              </button>
             </div>
           </div>
         </div>
       </nav>
-      {/* <hr /> */}
 
       <div className="Container-fluid title-cover-photo">
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12 part-1">
             <p className="part-1-name"> Retro Books</p>
-            <p className="tagline"> From Shelf to Sale: Your Premier Book Marketplace.
-            <br></br>
-            <button className="button-74" role="button" onClick={navigateToLogin}>Log In</button>
-            <button className="button-74 button-signup " role="button" onClick={navigateToRegister}>Sign Up</button>
+            <p className="tagline">
+              {" "}
+              From Shelf to Sale: Your Premier Book Marketplace.
+              <br></br>
+              <button
+                className="button-74"
+                role="button"
+                onClick={navigateToLogin}
+              >
+                Log In
+              </button>
+              <button
+                className="button-74 button-signup "
+                role="button"
+                onClick={navigateToRegister}
+              >
+                Sign Up
+              </button>
             </p>
-            {/* <span> hello</span> */}
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12 part-2">
-            <img src={pic2} alt="" className="cover-photo img-fluid mx-auto d-block"/>
+            <img
+              src={pic2}
+              alt=""
+              className="cover-photo img-fluid mx-auto d-block"
+            />
           </div>
         </div>
       </div>
@@ -81,10 +102,18 @@ export default function LandingPage() {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12 part-1">
             <p className="part-1-name"> Buy Used Books</p>
-            <p className="tagline"> Explore the Treasure Trove of Preloved Stories: Buy Used Books and Dive into a World of Affordable Reading Pleasures!</p>
+            <p className="tagline">
+              {" "}
+              Explore the Treasure Trove of Preloved Stories: Buy Used Books and
+              Dive into a World of Affordable Reading Pleasures!
+            </p>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12 part-2">
-            <img src={pic1} alt="" className="buy-books-section-photo img-fluid mx-auto d-block"/>
+            <img
+              src={pic1}
+              alt=""
+              className="buy-books-section-photo img-fluid mx-auto d-block"
+            />
           </div>
         </div>
       </div>
@@ -93,28 +122,31 @@ export default function LandingPage() {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12 part-1">
             <p className="part-1-name"> Sell Books</p>
-            <p className="tagline"> Turn Your Bookshelf into Cash: Sell Used Books and Share Your Literary Treasures with Fellow Readers!</p>
+            <p className="tagline">
+              {" "}
+              Turn Your Bookshelf into Cash: Sell Used Books and Share Your
+              Literary Treasures with Fellow Readers!
+            </p>
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12 part-2">
-            <img src={pic4} alt="" className="sell-books-section-photo img-fluid mx-auto d-block"/>
+            <img
+              src={pic4}
+              alt=""
+              className="sell-books-section-photo img-fluid mx-auto d-block"
+            />
           </div>
         </div>
       </div>
 
-
       <div className="Container-fluid footer">
-      <footer className="footer">
-      {/* <p className="footer-text">Designed and Developed by Name</p> */}
-      <p className="footer-text"> He created all, and he controls all, At the end, It is only He Who Remains. 💜</p>
-    </footer>
+        <footer className="footer">
+          <p className="footer-text">
+            {" "}
+            He created all, and he controls all, At the end, It is only He Who
+            Remains. 💜
+          </p>
+        </footer>
       </div>
-      {/* <h1 className="text-center">Landing Page</h1>
-
-      <section className="text-center" id="navigation">
-        <a href="/">Home</a>
-        <a href="/register">Register</a>
-        <a href="/login">Login</a>
-      </section> */}
     </div>
   );
 }

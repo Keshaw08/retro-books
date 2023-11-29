@@ -1,63 +1,3 @@
-// import React, {useState} from "react";
-
-// function BookModal(props) {
-//   const { isOpen, closeModal, img, title, author } = props;
-//   return (
-//     <div>
-//       <div
-//         // className="modal fade"
-//         className="modal fade"
-//         id="exampleModal"
-//         tabIndex="-1"
-//         aria-labelledby="exampleModalLabel"
-//         aria-hidden="true"
-//       >
-//         <div className="modal-dialog modal-xl  modal-dialog-scrollable modal-fullscreen-sm-down">
-//           <div className="modal-content">
-//             <div className="modal-header">
-//               <h5 className="modal-title" id="exampleModalLabel">
-//                 Modal title
-//               </h5>
-//               <button
-//                 type="button"
-//                 className="btn-close"
-//                 data-bs-dismiss="modal"
-//                 aria-label="Close"
-//               ></button>
-//             </div>
-//             <div className="modal-body">
-//               <div className="row">
-//                 <div className="col-lg-4 col-md-4 col-sm-12 image_modal_div">
-//                 </div>
-//                 <div className="col-lg-8 col-md-8 col-sm-8">
-//                   <h3>{title}</h3>
-//                   <p>
-//                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
-//                     Adipisci amet sapiente beatae expedita maxime quod earum sed
-//                     excepturi illo. Ab, vero voluptatum. Voluptatibus quia
-//                     adipisci, ut reprehenderit aut quasi rerum?
-//                   </p>
-//                 </div>
-//               </div>
-//             </div>
-//             <div className="modal-footer">
-//               <button
-//                 type="button"
-//                 className="btn btn-secondary"
-//                 data-bs-dismiss="modal"
-//               >
-//                 Close
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default BookModal;
-
 import React, { useState, useEffect } from "react";
 import "./BookModal.css";
 import BookReview from "../BooksReview/BookReview";
@@ -80,32 +20,9 @@ function BookModal(props) {
 
   const [selectedBookId, setSelectedBookId] = useState(bookId);
 
-  // setSelectedBookId(bookId);
-
   const [reviewBookId, setReviewBookId] = useState(bookId);
   const [email, setEmail] = useState("");
   const [review, setReview] = useState("");
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const response = await fetch("http://localhost:5000/reviews", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ reviewBookId, email, review }),
-  //   });
-
-  //   if (response.status === 200) {
-  //     // Review submitted successfully
-  //     console.log("Review submitted!");
-  //     setEmail("");
-  //     setReview("");
-  //   } else {
-  //     // Handle errors here
-  //     console.error("Error submitting review");
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -118,17 +35,14 @@ function BookModal(props) {
     });
 
     if (response.status === 200) {
-      // Review submitted successfully
       console.log("Review submitted!");
 
-      // Update the reviews state with the newly posted review
       const newReview = { email, review };
       setReviews([...reviews, newReview]);
 
       setEmail("");
       setReview("");
     } else {
-      // Handle errors here
       console.error("Error submitting review");
     }
   };
@@ -136,7 +50,6 @@ function BookModal(props) {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    // Fetch reviews based on the currentBookId
     const fetchReviews = async () => {
       try {
         const response = await fetch(
@@ -156,31 +69,10 @@ function BookModal(props) {
     fetchReviews();
   }, [selectedBookId]);
 
-  // const handleRatingClick = (value) => {
-  //   // Send the rating to the backend
-  //   fetch("http://localhost:5000/api/rate-book", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({  bookId: selectedBookId, rating: value  }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // Handle success or display an error message
-  //       console.log("Rating submitted:", data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // };
-
-  // const [rating, setRating] = useState(0);
   const [averageRating, setAverageRating] = useState(0); // State to store average rating
   const [rating, setRating] = useState(averageRating || 0);
 
   const handleRatingClick = (value) => {
-    // Send the rating to the backend
     fetch("http://localhost:5000/api/rate-book", {
       method: "POST",
       headers: {
@@ -191,12 +83,9 @@ function BookModal(props) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Rating submitted successfully, you can display a success message if needed
           console.log("Rating submitted:", data);
-          // Update the local rating state
           setRating(value);
         } else {
-          // Handle errors if the rating submission fails
           console.error("Error:", data.error);
         }
       })
@@ -206,13 +95,12 @@ function BookModal(props) {
   };
 
   useEffect(() => {
-    // Fetch the average rating and set it as the initial rating when the component mounts
     fetch(`http://localhost:5000/api/get-average-rating?bookId=${bookId}`)
       .then((response) => response.json())
       .then((data) => {
         setAverageRating(data.averageRating);
-        setRating(data.averageRating); // Set the initial rating to the average rating
-        console.log("Average Rating:", data.averageRating); // Add this line
+        setRating(data.averageRating);
+        console.log("Average Rating:", data.averageRating);
       })
       .catch((error) => {
         console.error("Error fetching average rating:", error);
@@ -225,7 +113,6 @@ function BookModal(props) {
     setIsOfferModalOpen(true);
   };
 
-  // Function to close the modal
   const closeOfferModal = () => {
     setIsOfferModalOpen(false);
   };
@@ -326,7 +213,7 @@ function BookModal(props) {
                                 ? "gold"
                                 : "gray",
                             cursor: "pointer",
-                            fontSize: "2rem", // Set the font size to 2 rem
+                            fontSize: "2rem",
                           }}
                         />
                       ))}
@@ -359,9 +246,6 @@ function BookModal(props) {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                         />
-                        {/* <div id="emailHelp" className="form-text">
-                          We'll never share your email with anyone else.
-                        </div> */}
                       </div>
                       <div className="mb-3">
                         <label

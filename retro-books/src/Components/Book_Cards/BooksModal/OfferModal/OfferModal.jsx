@@ -15,19 +15,17 @@ function OfferModal(props) {
   var sender;
   if (userDataString) {
     sender = JSON.parse(userDataString);
-    sender = sender.email; // Set sender to the email property
+    sender = sender.email;
   }
 
   const handleSendOffer = () => {
-    // Create an offer object to send to the backend
     const offerData = {
       offerPrice,
-      sender, // This should be the email string
+      sender,
       posted_by,
       bookId,
     };
 
-    // Make a POST request to your API endpoint
     fetch("http://localhost:5000/api/create-offer", {
       method: "POST",
       headers: {
@@ -37,13 +35,10 @@ function OfferModal(props) {
     })
       .then((response) => response.json())
       .then((data) => {
-        // Handle the response or perform any necessary actions
         console.log("Offer sent successfully:", data);
-        // You can also close the modal or show a success message to the user
         closeOfferModal();
       })
       .catch((error) => {
-        // Handle errors
         console.error("Error sending offer:", error);
       });
   };

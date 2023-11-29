@@ -34,13 +34,11 @@ function BookForm() {
     for (const key in formData) {
       data.append(key, formData[key]);
     }
-    // Append the known value (posted_by)
     data.append("posted_by", posted_by);
 
     try {
       const response = await axios.post("http://localhost:5000/seller", data);
       console.log("Book data saved:", response.data);
-      // Reset the form fields after submission if needed
       setFormData({
         bookImage: null,
         title: "",
@@ -66,7 +64,6 @@ function BookForm() {
                 Image of Book
               </label>
               <Form.Group controlId="bookImage">
-                {/* <Form.Label>Image of Book</Form.Label> */}
                 <Form.Control
                   type="file"
                   name="bookImage"
@@ -81,7 +78,6 @@ function BookForm() {
                 Title of Book
               </label>
               <Form.Group controlId="title">
-                {/* <Form.Label>Title of Book</Form.Label> */}
                 <Form.Control
                   type="text"
                   name="title"
@@ -95,7 +91,6 @@ function BookForm() {
                 Author of Book
               </label>
               <Form.Group controlId="author">
-                {/* <Form.Label>Author of Book</Form.Label> */}
                 <Form.Control
                   type="text"
                   name="author"
@@ -109,7 +104,6 @@ function BookForm() {
                 Language of Book
               </label>
               <Form.Group controlId="language">
-                {/* <Form.Label>Language of Book</Form.Label> */}
                 <Form.Control
                   type="text"
                   name="language"
@@ -123,7 +117,6 @@ function BookForm() {
                 Price of Book
               </label>
               <Form.Group controlId="price">
-                {/* <Form.Label>Price of Book</Form.Label> */}
                 <Form.Control
                   type="text"
                   name="price"
@@ -137,7 +130,6 @@ function BookForm() {
                 Location of Book
               </label>
               <Form.Group controlId="location">
-                {/* <Form.Label>Location of Seller</Form.Label> */}
                 <Form.Control
                   type="text"
                   name="location"
@@ -151,7 +143,6 @@ function BookForm() {
                 ISBNX of Book
               </label>
               <Form.Group controlId="isbn">
-                {/* <Form.Label>ISBN of Book</Form.Label> */}
                 <Form.Control
                   type="text"
                   name="isbn"
@@ -164,9 +155,6 @@ function BookForm() {
         </div>
 
         <div className="col-12 submit-post-book">
-          {/* <button type="submit" className="btn btn-primary">
-            Sign in
-          </button> */}
           <button className="button-74" type="submit">
             Post
           </button>

@@ -12,12 +12,10 @@ function SellerMessages() {
       const currentUser = JSON.parse(userDataString);
       const currentUserEmail = currentUser.email;
 
-      // Fetch offers for the currently logged-in user
       fetch(`http://localhost:5000/api/offers?email=${currentUserEmail}`)
         .then((response) => response.json())
         .then((data) => {
           setOffers(data);
-          // Fetch book details for each offer
           fetchBookDetailsForOffers(data);
         })
         .catch((error) => {
@@ -26,13 +24,11 @@ function SellerMessages() {
     }
   }, [userDataString]);
 
-  // Function to fetch book details for each offer
   const fetchBookDetailsForOffers = (offers) => {
     offers.forEach((offer) => {
       fetch(`http://localhost:5000/books/${offer.bookId}`)
         .then((response) => response.json())
         .then((data) => {
-          // Store the book details for the offer in the state
           setBookDetails((prevBookDetails) => ({
             ...prevBookDetails,
             [offer.bookId]: data,
@@ -44,11 +40,9 @@ function SellerMessages() {
     });
   };
 
-  // Function to handle the seller's response
   const handleResponse = (offer, answer) => {
     const { bookId, sender, posted_by, offerPrice } = offer;
 
-    // Send the response to the server
     fetch("http://localhost:5000/api/seller-response", {
       method: "POST",
       headers: {
@@ -65,7 +59,6 @@ function SellerMessages() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Response sent successfully:", data);
-        // Optionally, you can update the UI to reflect the response.
       })
       .catch((error) => {
         console.error("Error sending response:", error);

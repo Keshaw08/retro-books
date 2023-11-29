@@ -30,8 +30,7 @@ function PostedBooks() {
     if (userData && userData.email) {
       fetchBooks();
     }
-  }, [userData]); // Add userData as a dependency to re-fetch books when the user changes
-
+  }, [userData]);
   async function handleDeleteBook(bookId) {
     var answer = window.confirm("Are you sure you want to delete the book?");
     if (answer) {
@@ -40,7 +39,6 @@ function PostedBooks() {
           `http://localhost:5000/seller/${bookId}`
         );
 
-        // Remove the deleted book from the state
         setBooks((prevBooks) =>
           prevBooks.filter((book) => book._id !== bookId)
         );
@@ -51,35 +49,20 @@ function PostedBooks() {
       }
       console.log("delete book Id is : ", bookId);
     } else {
-      //some code
       console.log("NO");
     }
-    // try {
-    //   const response = await axios.delete(
-    //     `http://localhost:5000/seller/${bookId}`
-    //   );
-
-    //   // Remove the deleted book from the state
-    //   setBooks((prevBooks) => prevBooks.filter((book) => book._id !== bookId));
-
-    //   console.log(response.data.message);
-    // } catch (error) {
-    //   console.error("Error deleting book:", error);
-    // }
-    // console.log("delete book Id is : ", bookId);
   }
 
   const [searchedBook, setSearchedBook] = useState(null);
   const searchBookById = (bookName) => {
     const foundBook = books.find(
-      //search about which algorithm does find uses.
       (book) => book.title.toLowerCase() === bookName.toLowerCase()
     );
 
     if (foundBook) {
       setSearchedBook(foundBook);
     } else {
-      setSearchedBook(null); // Reset searchedBook if not found
+      setSearchedBook(null);
     }
 
     console.log("search book : ", bookName);
@@ -104,7 +87,6 @@ function PostedBooks() {
   return (
     <div>
       <TopbarSeller searchFunction={searchBookById} />
-      {/* <h1>All books you posted are here.</h1> */}
       <div className="row">
         <div className="col-lg-1 col-md-1 col-sm-1">
           <Sidebar />
@@ -153,11 +135,10 @@ function PostedBooks() {
           </div>
         </div>
       </div>
-      {/* Conditionally render the EditBookModal */}
       {currentBook !== null && (
         <EditBookModal
           bookId={currentBook}
-          onClose={() => setCurrentBook(null)} // Close the modal when needed
+          onClose={() => setCurrentBook(null)}
         />
       )}
     </div>
