@@ -240,6 +240,19 @@ function BookModal(props) {
     return () => window.removeEventListener("keydown", close);
   }, []);
 
+  const [postedSeller, setPostedSeller] = useState("");
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/current-user?email=${posted_by}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setPostedSeller(data.name);
+      })
+      .catch((error) => {
+        console.error("Error fetching current user:", error);
+      });
+  }, [posted_by]);
+
   return (
     <div>
       <div
@@ -289,7 +302,7 @@ function BookModal(props) {
                     </h5>
                     <h5>
                       <div className="key">Posted By</div>
-                      <div className="value">{posted_by}</div>
+                      <div className="value">{postedSeller}</div>
                     </h5>
                     <h5>
                       <div className="key">ISBNX</div>
@@ -400,6 +413,7 @@ function BookModal(props) {
         title={title}
         bookId={bookId}
         posted_by={posted_by}
+        postedSeller={postedSeller}
       />
     </div>
   );

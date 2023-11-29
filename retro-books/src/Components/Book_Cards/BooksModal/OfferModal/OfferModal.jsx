@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import "./OfferModal.css";
 
 function OfferModal(props) {
-  const { isOfferModalOpen, closeOfferModal, title, bookId, posted_by } = props;
+  const {
+    isOfferModalOpen,
+    closeOfferModal,
+    title,
+    bookId,
+    posted_by,
+    postedSeller,
+  } = props;
   const [offerPrice, setOfferPrice] = useState("");
   const userDataString = localStorage.getItem("user");
   var sender;
@@ -72,7 +79,7 @@ function OfferModal(props) {
                   <hr />
                 </h3>
                 <h5>
-                  <div className="key">Sending to : {posted_by}</div>
+                  <div className="key">Sending to : {postedSeller}</div>
                   <hr />
                 </h5>
               </div>

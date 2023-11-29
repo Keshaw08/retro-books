@@ -145,8 +145,6 @@ function BuyerMessages() {
   useEffect(() => {
     if (userDataString) {
       const currentUser = JSON.parse(userDataString);
-
-      // Fetch the name of the currently logged-in user
       fetch(`http://localhost:5000/api/current-user?email=${currentUser.email}`)
         .then((response) => response.json())
         .then((data) => {
