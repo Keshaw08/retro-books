@@ -2,14 +2,12 @@ const mongoose = require("mongoose");
 
 const WishlistItemSchema = new mongoose.Schema({
   userId: {
-    // type: mongoose.Schema.Types.ObjectId,
     type: String,
-    ref: "User", // Reference to your User model
+    ref: "User",
   },
   bookId: {
-    // type: mongoose.Schema.Types.ObjectId,
     type: String,
-    ref: "Book", // Reference to your Book model
+    ref: "Book",
   },
 });
 
